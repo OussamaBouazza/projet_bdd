@@ -1,0 +1,632 @@
+html {  
+    margin: 0%;   
+    padding: 0%;             /*on determine la taille de nos page 100*100*/
+    width: 100vw;
+    height: 100vh;
+}
+
+body {	
+    margin: 0%;   
+    padding: 0%;   		        /*taille du body et couleur*/
+    height: 100vh;
+	background: #5e5f5f;
+}
+
+header {                     /*taille du header et alignements*/
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #474646;
+}
+
+main {                  /*taille du main*/
+    height: 75vh;
+}
+
+footer {                    /*taille du footer et alignements*/
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #474646;  
+}   
+
+form {
+    width:100%;
+    padding: 30px;
+    border: 4px solid #000000;
+    background: rgb(158, 158, 158);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#container1{
+    width:20%;
+    margin-left: 40%;
+    margin-top: -7%;
+    font-family: cursive;
+}
+
+#container1 h1{
+    width: 38%;
+    font-size: 18px;
+    font-family: cursive;
+    margin: 0 auto;
+    text-align: center ;
+    padding-bottom: 10px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#ButtonAdd{                /*effets sur les autre boutons*/
+    background-color: #53af57;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: solid black;
+    cursor: pointer;
+    width: 100%;
+}
+
+#ButtonAdd:hover {          
+    background-color: white;
+    color: #53af57;
+    border: 1px solid #020302;
+}
+
+#ButtonSupp{                /*effets sur les autre boutons*/
+    background-color: #920101;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: solid black;
+    cursor: pointer;
+    width: 100%;
+}
+
+#ButtonSupp:hover {          
+    background-color: white;
+    color: #920101;
+    border: 1px solid #020302;
+}
+
+#ButtonMod{                /*effets sur les autre boutons*/
+    background-color: #b99121;
+    color: rgb(0, 0, 0);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: solid black;
+    cursor: pointer;
+    width: 100%;
+}
+
+#ButtonMod:hover {          
+    background-color: rgb(87, 87, 87);
+    color: #b99121;
+    border: 1px solid #020302;
+}
+
+#idNomMenu{
+		text-align: left;
+		margin-left: 150px;
+		margin-top: 20px;
+		font-size: 24px;
+        font-family: cursive;
+		color: #FFFFFF;	
+}
+
+#idImgTitre{                /*position et taille image Street'Runners*/
+	width: 25%;
+    height: 90%;
+    margin-left: 10%;
+    align-items: center;
+}
+
+#idInfoCo{                      /*style informations de session*/
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 20px;
+    font-family: cursive;
+    color: #FFFFFF;
+}
+
+#idInfoDeco{
+	background-color: #FFFFFF;
+    cursor: pointer;
+	text-align: right;
+	font-size: 12.5px;
+	font-family: cursive;
+    padding: 10px 20px;
+    border: 4px solid #6e1e1e;
+    transition: all 0.3s;
+}
+
+#idSession {                
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#idInfoDeco:hover{			
+	box-shadow: 0 0 1vw;
+	background-color: #6e1e1e;
+}
+
+#idBarreInfo {        /*Couleur, taille et police du texte en footer*/
+    color: #FFFFFF;
+	font-family: cursive;
+	font-size: 18px;
+    width: 100%;
+    text-align: center;
+}
+
+#idButtonResa{
+    background-color: #ffffff;
+    border: 2px solid rgb(0, 0, 0);
+    cursor: pointer;
+    text-align: center;
+	font-family: cursive;  
+    font-size: 18px;  
+	margin-left: 0%;
+    border-radius: 10px;
+    transition: all 0.3s;		
+}
+
+#idButtonMateriel {			/*style des boutons de la page matériel*/
+    background-color: #FFFFFF;
+    border: 4px solid rgb(0, 0, 0);
+    cursor: pointer;
+	font-family: cursive;  
+    font-size: 24px;  
+    margin-top: 8%;
+    margin-left: 5%;
+    padding: 20px 30px;
+    border-radius: 10px;
+    transition: all 0.3s;			
+}
+
+#idButtonMateriel:hover {			/*effet d'ombre autour des boutons*/
+	box-shadow: 0 0 2vw;
+	background-color: #03a3ad;
+}
+
+#idButtonBarreNav {			/*style des boutons dans le menu navigation*/
+    background-color: #FFFFFF;
+    border: 2px solid rgb(77, 77, 77);
+    cursor: pointer;
+	font-family: cursive;
+    font-size: 12.5px;
+    padding: 2% 7.7%;
+    margin-left: -2px;
+    transition: all 0.3s;	
+}
+
+#idButtonBarreNav:hover {			/*effet d'ombre autour des boutons*/
+	box-shadow: 0 0 2vw;
+	background-color: #03a3ad;
+}
+
+#idButtonReserver {			/*style des boutons dans le menu navigation*/
+    background-color: #FFFFFF;
+    border: 2px solid rgb(77, 77, 77);
+    cursor: pointer;
+	font-family: cursive;
+    font-size: 12.5px;
+    padding: 0.5% 3%;
+    position: absolute;
+    left:60%;
+    transition: all 0.3s;	
+}
+
+#idButtonReserver:hover {			/*effet d'ombre autour des boutons*/
+	box-shadow: 0 0 2vw;
+	background-color: #03a3ad;
+}
+
+#idPresentation {					
+	color: #ffffff;
+	font-size: 14px;
+	font-family: cursive;
+}
+
+.slider {					/*slider*/
+    width: 70%;
+    overflow: hidden;
+    margin: 0px auto;
+	position:absolute;
+	top: 18%;
+	left:-210px;
+	right:-210px;
+	border: solid 5px black;
+}
+
+.slide {
+    float: left;
+}
+
+.sliders {
+    width: calc(2000px*2);
+    animation: anim 90s infinite;
+}
+
+.toggle_btn{					
+	height: 30px;
+	width: 30px;
+    margin-left: 90px;
+    margin-top: 28px;
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
+
+.toggle_btn span {
+    position: absolute;					
+	height : 4px;
+	background-color: #ffffff;
+	width: 100%;
+	top: 0px;
+}
+
+.toggle_btn span:before {	
+    content: '';	
+    position: absolute;				
+	height : 4px;
+	background-color: #ffffff;
+	width: 100%;
+	top: 10px;
+}
+
+.toggle_btn span:after {	
+    content: '';
+    position: absolute;				
+	height : 4px;
+	background-color: #ffffff;
+	width: 100%;
+	top: 20px;	
+}
+
+.position{					
+    margin-top: -5%;
+    margin-left: 18%;
+}
+
+.menu{					
+	background-color: #6A6666;
+	width: 220px;
+	border:solid 2px;
+    height: fit-content;
+}
+
+.menu a {
+	color: #6A6666;
+	font-family: cursive;
+	text-align: center;
+	display: block;
+	padding-top: 20px;
+}
+
+.nav {
+	margin-left:-225px;       
+	transition-duration: 0.8s;
+}
+
+.nav_open {
+	margin-left:0px;      
+	transition-duration: 0.8s;
+}
+
+@keyframes anim {					/*slider, j'ai mis 100 positions pour défiler lentement car avec les caroussels ou autre sliders les images étaient flou.*/
+        0% {
+        transform: translateX(0px);
+    }
+		1% {
+        transform: translateX(-24px);
+    }
+		2% {
+        transform: translateX(-48px);
+    }
+		3% {
+        transform: translateX(-72px);
+    }
+		4% {
+        transform: translateX(-96px);
+    }
+		5% {
+        transform: translateX(-120px);
+    }
+		6% {
+        transform: translateX(-144px);
+    }
+		7% {
+        transform: translateX(-168px);
+    }
+		8% {
+        transform: translateX(-192px);
+    }
+		9% {
+        transform: translateX(-216px);
+    }
+        10% {
+        transform: translateX(-240px);
+    }
+		11% {
+        transform: translateX(-264px);
+    }
+		12% {
+        transform: translateX(-288px);
+    }
+		13% {
+        transform: translateX(-312px);
+    }
+		14% {
+        transform: translateX(-336px);
+    }
+		15% {
+        transform: translateX(-360px);
+    }
+		16% {
+        transform: translateX(-384px);
+    }
+		17% {
+        transform: translateX(-408px);
+    }
+		18% {
+        transform: translateX(-432px);
+    }
+		19% {
+        transform: translateX(-456px);
+    }
+        20% {
+        transform: translateX(-480px);
+    }
+		21% {
+        transform: translateX(-504px);
+    }
+		22% {
+        transform: translateX(-528px);
+    }
+		23% {
+        transform: translateX(-552px);
+    }
+		24% {
+        transform: translateX(-576px);
+    }
+	    25% {
+		transform: translateX(-600px);
+	}
+		26% {
+        transform: translateX(-624px);
+    }
+		27% {
+        transform: translateX(-648px);
+    }
+		28% {
+        transform: translateX(-672px);
+    }
+		29% {
+        transform: translateX(-696px);
+    }
+		30% {
+			  transform: translateX(-720px);
+    }
+		31% {
+        transform: translateX(-744px);
+    }
+		32% {
+        transform: translateX(-768px);
+    }
+		33% {
+        transform: translateX(-792px);
+    }
+		34% {
+        transform: translateX(-816px);
+    }
+		35% {
+		transform: translateX(-840px);
+	}
+		36% {
+        transform: translateX(-864px);
+    }
+		37% {
+        transform: translateX(-888px);
+    }
+		38% {
+        transform: translateX(-912px);
+    }
+		39% {
+        transform: translateX(-936px);
+    }
+        40% {
+        transform: translateX(-960px);
+    }
+		41% {
+        transform: translateX(-984px);
+    }
+		42% {
+        transform: translateX(-1008px);
+    }
+		43% {
+        transform: translateX(-1032px);
+    }
+		44% {
+        transform: translateX(-1056px);
+    }
+		45% {
+		transform: translateX(-1080px);
+	}
+		46% {
+        transform: translateX(-1104px);
+    }
+		47% {
+        transform: translateX(-1128px);
+    }
+		48% {
+        transform: translateX(-1152px);
+    }
+		49% {
+        transform: translateX(-1176px);
+    }
+        50% {
+        transform: translateX(-1200px);
+    }
+		51% {
+        transform: translateX(-1176px);
+    }
+		52% {
+        transform: translateX(-1152px);
+    }
+		53% {
+        transform: translateX(-1128px);
+    }
+		54% {
+        transform: translateX(-1104px);
+    }
+		55% {
+		transform: translateX(-1080px);
+	}
+		56% {
+        transform: translateX(-1056px);
+    }
+		57% {
+        transform: translateX(-1032px);
+    }
+		58% {
+        transform: translateX(-1008px);
+    }
+		59% {
+        transform: translateX(-984px);
+    }
+        60% {
+        transform: translateX(-960px);
+    }
+		61% {
+        transform: translateX(-936px);
+    }
+		62% {
+        transform: translateX(-912px);
+    }
+		63% {
+        transform: translateX(-888px);
+    }
+		64% {
+        transform: translateX(-864px);
+    }
+		65% {
+		transform: translateX(-840px);
+	}
+		66% {
+        transform: translateX(-816px);
+    }
+		67% {
+        transform: translateX(-792px);
+    }
+		68% {
+        transform: translateX(-768px);
+    }
+		69% {
+        transform: translateX(-744px);
+    }
+        70% {
+        transform: translateX(-720px);
+    }
+		71% {
+        transform: translateX(-696px);
+    }
+		72% {
+        transform: translateX(-672px);
+    }
+		73% {
+        transform: translateX(-648px);
+    }
+		74% {
+        transform: translateX(-624px);
+    }
+		75% {
+		transform: translateX(-600px);
+	}
+		76% {
+        transform: translateX(-576px);
+    }
+		77% {
+        transform: translateX(-552px);
+    }
+		78% {
+        transform: translateX(-528px);
+    }
+		79% {
+        transform: translateX(-504px);
+    }
+        80% {
+        transform: translateX(-480px);
+    }
+		81% {
+        transform: translateX(-456px);
+    }
+		82% {
+        transform: translateX(-432px);
+    }
+		83% {
+        transform: translateX(-408px);
+    }
+		84% {
+        transform: translateX(-384px);
+    }
+		85% {
+		transform: translateX(-360px);
+	}
+		86% {
+        transform: translateX(-336px);
+    }
+		87% {
+        transform: translateX(-312px);
+    }
+		88% {
+        transform: translateX(-288px);
+    }
+		89% {
+        transform: translateX(-264px);
+    }
+        90% {
+        transform: translateX(-240px);
+    }
+		91% {
+        transform: translateX(-216px);
+    }
+		92% {
+        transform: translateX(-192px);
+    }
+		93% {
+        transform: translateX(-168px);
+    }
+		94% {
+        transform: translateX(-144px);
+    }
+		95% {
+		transform: translateX(-120px);
+	}
+		96% {
+        transform: translateX(-96px);
+    }
+		97% {
+        transform: translateX(-72px);
+    }
+		98% {
+        transform: translateX(-48px);
+    }
+		99% {
+        transform: translateX(-24px);
+    }
+        100% {
+        transform: translateX(0px);
+    }
+}
