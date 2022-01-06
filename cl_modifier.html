@@ -1,0 +1,17 @@
+<input type="submit"  id='ButtonMod'  value='Modifier' name="Modifier">   
+
+
+
+else if(isset($_POST['Modifier'])){
+    $Nom=$_POST["Nom"];
+    $Image=$_POST["Image"];
+    $Description=$_POST["Description"];
+    $Taille=$_POST["Taille"];
+    $Pointure=$_POST["Pointure"];
+    $Dispo=$_POST["Dispo"];
+    echo "<p style='color:yellow'>Modifié</p>";
+    include "connect_sql.php";
+    
+    $query="UPDATE `Vehicle` SET `Nom`='$Nom', `Image`= '$Image',`Description`=' $Description',`Taille`= '$Taille', `Dispo`='$Dispo', `Pointure`='$Pointure' WHERE Nom='$Nom'";
+    $result = $conn->query(utf8_decode($query));
+    }
