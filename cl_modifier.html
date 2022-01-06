@@ -1,17 +1,70 @@
-<input type="submit"  id='ButtonMod'  value='Modifier' name="Modifier">   
+<!DOCTYPE html>
 
+<html lang="fr"> 					<!-- Page française -->
+    <head>					<!-- Nom qui apparait sur l'onglet de navigation -->
+        <title> Créer Client </title>
 
+        <meta charset="utf-8">
 
-else if(isset($_POST['Modifier'])){
-    $Nom=$_POST["Nom"];
-    $Image=$_POST["Image"];
-    $Description=$_POST["Description"];
-    $Taille=$_POST["Taille"];
-    $Pointure=$_POST["Pointure"];
-    $Dispo=$_POST["Dispo"];
-    echo "<p style='color:yellow'>Modifié</p>";
-    include "connect_sql.php";
+		<link rel="stylesheet" href="css/style1.css" />		<!-- lien entre html et CSS -->
+
+    </head>
+    <body>
+        <header>					<!-- Barre d'informations -->
+
+        </header>
+
+        <main>            
+
+                <!--PARTIE CENTRALE -->
+
+        <div id="container1">
+            <!-- zone de formulaire -->
+
+            <form action="cl_creer.html" method="POST">
+                <h1>Creer un client</h1>
+				
+				<label for="username"><b>Nom:</b></label>
+                <input type="text" placeholder="Entre le nom/pseudo" name="username" required>
+				
+				<label for="Ville"><b></br>Ville:</br></b></label>
+                <input type="text" placeholder="Entrez le nom de ville" name="Ville" >
+				
+				<label for="email"><b>Adresse email:</b></label>
+                <input type="text" placeholder="Entrez votre adresse mail" name="email" required>
+
+                <input type="submit"  id='ButtonMod'  value='Modifier' name="Modifier">   
+        
+            </form>
+
+                <?php
+
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1 || $err==2) 
+                        echo "<p style='color:red'>Données incohérentes</p>";
+				        }
+				
+				
+                else if(isset($_POST['Modifier'])){
+                    $Nom=$_POST["Nom"];
+                    $Image=$_POST["Image"];
+                    $Description=$_POST["Description"];
+                    $Taille=$_POST["Taille"];
+                    echo "<p style='color:yellow'>Modifié</p>";
+                    include "connect_sql.php";
     
-    $query="UPDATE `Vehicle` SET `Nom`='$Nom', `Image`= '$Image',`Description`=' $Description',`Taille`= '$Taille', `Dispo`='$Dispo', `Pointure`='$Pointure' WHERE Nom='$Nom'";
-    $result = $conn->query(utf8_decode($query));
-    }
+                    $query="UPDATE `Vehicle` SET `Nom`='$Nom', `Image`= '$Image',`Description`=' $Description',`Taille`= '$Taille', `Dispo`='$Dispo', `Pointure`='$Pointure' WHERE Nom='$Nom'";
+                    $result = $conn->query(utf8_decode($query));
+                 }
+                
+				?>
+                 <p id="idBarreInfo"> Remplissez toutes les cases pour créer un client. </p>
+        </div> 
+            
+        </main>                       
+		    <!--FIN PARTIE CENTRALE-->
+        <!-- Pied de page -->
+        
+    </body>
+</html>
