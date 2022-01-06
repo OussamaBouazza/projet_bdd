@@ -2,7 +2,7 @@
 
 <html lang="fr"> 					<!-- Page française -->
     <head>					<!-- Nom qui apparait sur l'onglet de navigation -->
-        <title> Créer Client </title>
+        <title> Modifier Client </title>
 
         <meta charset="utf-8">
 
@@ -22,16 +22,20 @@
             <!-- zone de formulaire -->
 
             <form action="cl_creer.html" method="POST">
-                <h1>Creer un client</h1>
+                <h1>Modifier un client</h1>
 				
-				<label for="username"><b>Nom:</b></label>
-                <input type="text" placeholder="Entre le nom/pseudo" name="username" required>
-				
-				<label for="Ville"><b></br>Ville:</br></b></label>
-                <input type="text" placeholder="Entrez le nom de ville" name="Ville" >
+				<label for="nom_client"><b>Nom:</b></label>
+                <input type="text" placeholder="Entre le nom/pseudo" name="nom_client" required>
 				
 				<label for="email"><b>Adresse email:</b></label>
                 <input type="text" placeholder="Entrez votre adresse mail" name="email" required>
+
+                <label for="facebook_account"><b></br>Facebook:</br></b></label>
+                <input type="text" placeholder="Entrez votre facebook (facultatif)" name="facebook_account" >
+
+                <label for="instagram_account"><b></br>Instagram:</br></b></label>
+                <input type="text" placeholder="Entrez votre instagram (facultatif)" name="instagram_account" >
+
 
                 <input type="submit"  id='ButtonMod'  value='Modifier' name="Modifier">   
         
@@ -47,19 +51,20 @@
 				
 				
                 else if(isset($_POST['Modifier'])){
-                    $Nom=$_POST["Nom"];
-                    $Image=$_POST["Image"];
-                    $Description=$_POST["Description"];
-                    $Taille=$_POST["Taille"];
+                    $nom_client=$_POST["nom_client"];
+                    $email=$_POST["email"];
+                    $facebook_account=$_POST["facebook_account"];
+                    $instagram_account=$_POST["instagram_account"];
+
                     echo "<p style='color:yellow'>Modifié</p>";
                     include "connect_sql.php";
     
-                    $query="UPDATE `Vehicle` SET `Nom`='$Nom', `Image`= '$Image',`Description`=' $Description',`Taille`= '$Taille', `Dispo`='$Dispo', `Pointure`='$Pointure' WHERE Nom='$Nom'";
+                    $query="UPDATE `Client` SET `nom_client`='$nom_client', `email`='$mail', `facebook_account`='$facebook_account', `instagram_account`='$instagram_account' WHERE id_client='$id_client'";
                     $result = $conn->query(utf8_decode($query));
-                 }
+                }
                 
 				?>
-                 <p id="idBarreInfo"> Remplissez toutes les cases pour créer un client. </p>
+                 <p id="idBarreInfo"> Modifiez les données d'un client en remplissant les cases. </p>
         </div> 
             
         </main>                       
