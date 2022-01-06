@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="fr"> 					<!-- Page française -->
+    <head>					<!-- Nom qui apparait sur l'onglet de navigation -->
+        <title> Créer Commande </title>
+
+        <meta charset="utf-8">
+
+		<link rel="stylesheet" href="css/style1.css" />		<!-- lien entre html et CSS -->
+
+    </head>
+    <body>
+        <header>					<!-- Barre d'informations -->
+
+        </header>
+
+        <main>            
+
+                <!--PARTIE CENTRALE -->
+
+        <div id="container1">
+            <!-- zone de formulaire -->
+
+            <form action="cl_creer.html" method="POST">
+                <h1>Creer une commande</h1>
+				
+				<label for="nom_item"><b>Nom item:</b></label>
+                <input type="text" placeholder="Entre le nom/pseudo" name="nom_client" required>
+				
+				<label for="quantite"><b>Quantite:</b></label>
+                <input type="text" placeholder="Entrez votre adresse mail" name="email" required>
+                
+                <SCRIPT LANGUAGE="JavaScript">
+                    function addField(){
+                        var field = "<input type='text' name='champ' value='' size='10' maxlength='15'/><br/>";
+                        document.getElementById('fields').innerHTML += field;
+                    }
+                </SCRIPT>
+                
+                <div id="fields">
+                </div>
+                <input type="button" value="ajouter" onClick="addField();"> 
+                
+                <input type="submit" id='ButtonAdd' value='Ajouter' name="Commander">
+        
+            </form>
+
+                <?php
+
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1 || $err==2) 
+                        echo "<p style='color:red'>Données incohérentes</p>";
+				        }
+				
+				else if(isset($_POST['Ajouter'])){
+                    $nom_client=$_POST["nom_client"];
+                    $email=$_POST["email"];
+                    $facebook_account=$_POST["facebook_account"];
+                    $instagram_account=$_POST["instagram_account"];
+
+                    echo "<p style='color:green'>Ajouté</p>";
+                    include "connect_sql.php";
+                    $query="INSERT INTO Client(nom_client,email,facebook_account,instagram_account) VALUES('$nom_client','$email','$facebook_account','$instagram_account')";
+                    $result = $conn->query(utf8_decode($query));       
+                    }
+                
+				?>
+                 <p id="idBarreInfo"> Remplissez toutes les cases pour créer un client. </p>
+        </div> 
+            
+        </main>                       
+		    <!--FIN PARTIE CENTRALE-->
+        <!-- Pied de page -->
+        
+    </body>
+</html>
