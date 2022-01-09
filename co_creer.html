@@ -25,23 +25,23 @@
                 <h1>Creer une commande</h1>
 				
 				<label for="nom_item"><b>Nom item:</b></label>
-                <input type="text" placeholder="Entre le nom/pseudo" name="nom_client" required>
+                <input type="text" placeholder="Entrez le nom de l'objet à commander" name="nom_item" required>
 				
 				<label for="quantite"><b>Quantite:</b></label>
-                <input type="text" placeholder="Entrez votre adresse mail" name="email" required>
+                <input type="text" placeholder="Entrez la quantité voulue" name="quantite" required>
                 
                 <SCRIPT LANGUAGE="JavaScript">
                     function addField(){
-                        var field = "<input type='text' name='champ' value='' size='10' maxlength='15'/><br/>";
+                        var field = "<label for='nom_item'><b>Nom item:</b></label> <input type='text' placeholder='Entrez le nom de l objet à commander' name='nom_item' /><br/> <label for='quantite'><b>Quantite:</b></label><input type='text' placeholder='Entrez la quantité voulue' name='quantite' value=''/><br/>";
                         document.getElementById('fields').innerHTML += field;
                     }
                 </SCRIPT>
                 
                 <div id="fields">
                 </div>
-                <input type="button" value="ajouter" onClick="addField();"> 
+                <input type="button" value="Ajouter item" onClick="addField();"> 
                 
-                <input type="submit" id='ButtonAdd' value='Ajouter' name="Commander">
+                <input type="submit" id='ButtonAdd' value='Commander' name="Commander">
         
             </form>
 
@@ -53,21 +53,36 @@
                         echo "<p style='color:red'>Données incohérentes</p>";
 				        }
 				
-				else if(isset($_POST['Ajouter'])){
-                    $nom_client=$_POST["nom_client"];
-                    $email=$_POST["email"];
-                    $facebook_account=$_POST["facebook_account"];
-                    $instagram_account=$_POST["instagram_account"];
+				else if(isset($_POST['Commander'])){
+                    $nom_item=$_POST["nom_item"];
+                    $quantite=$_POST["quantite"];
 
-                    echo "<p style='color:green'>Ajouté</p>";
+                    echo "<p style='color:green'>Commandé</p>";
                     include "connect_sql.php";
-                    $query="INSERT INTO Client(nom_client,email,facebook_account,instagram_account) VALUES('$nom_client','$email','$facebook_account','$instagram_account')";
+                    $query="INSERT INTO ";
                     $result = $conn->query(utf8_decode($query));       
                     }
                 
 				?>
-                 <p id="idBarreInfo"> Remplissez toutes les cases pour créer un client. </p>
+                 <p id="idBarreInfo"> Remplissez toutes les cases pour créer une commande. </p>
         </div> 
+
+        <div>
+            <?php
+            include "connect_sql.php";
+
+              $query="SELECT prix FROM Item WHERE Nom='nom_item' ";
+              $result = $conn->query($query);
+              //var_dump($result);
+              //print_r($result);
+              echo "<table><tr>";
+              while($row = mysqli_fetch_array($result)){
+                  echo"<td> </td>";
+                }
+              echo "</tr></table>";
+              mysqli_close($conn);
+              ?>
+        </div>
             
         </main>                       
 		    <!--FIN PARTIE CENTRALE-->
