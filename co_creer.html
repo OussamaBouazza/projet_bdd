@@ -24,7 +24,10 @@
             <form action="cl_creer.html" method="POST">
                 <h1>Creer une commande</h1>
 				
-				<label for="nom_item"><b>Nom item:</b></label>
+				<label for="nom_client"><b>Nom client:</b></label>
+                <input type="text" placeholder="Entrez le nom du client qui commande" name="nom_client" required>
+
+                <label for="nom_item"><b>Nom item:</b></label>
                 <input type="text" placeholder="Entrez le nom de l'objet à commander" name="nom_item" required>
 				
 				<label for="quantite"><b>Quantite:</b></label>
@@ -32,7 +35,7 @@
                 
                 <SCRIPT LANGUAGE="JavaScript">
                     function addField(){
-                        var field = "<label for='nom_item'><b>Nom item:</b></label> <input type='text' placeholder='Entrez le nom de l objet à commander' name='nom_item' /><br/> <label for='quantite'><b>Quantite:</b></label><input type='text' placeholder='Entrez la quantité voulue' name='quantite' value=''/><br/>";
+                        var field = "<br><br><label for='nom_item'><b>Nom item:</b></label> <input type='text' placeholder='Entrez le nom de l objet à commander' name='nom_item' /><br/> <label for='quantite'><b>Quantite:</b></label><input type='text' placeholder='Entrez la quantité voulue' name='quantite' value=''/><br/>";
                         document.getElementById('fields').innerHTML += field;
                     }
                 </SCRIPT>
@@ -54,6 +57,7 @@
 				        }
 				
 				else if(isset($_POST['Commander'])){
+                    $nom_client=$_POST["nom_client"];
                     $nom_item=$_POST["nom_item"];
                     $quantite=$_POST["quantite"];
 
@@ -68,6 +72,7 @@
         </div> 
 
         <div>
+            <!--Afficher le prix total-->
             <?php
             include "connect_sql.php";
 

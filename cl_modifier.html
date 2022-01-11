@@ -23,9 +23,6 @@
 
             <form action="cl_creer.html" method="POST">
                 <h1>Modifier un client</h1>
-				
-                <label for="id_client"><b>Id:</b></label>
-                <input type="text" placeholder="Entrez l'Id du client à modifier" name="id_client" required>
 
 				<label for="nom_client"><b>Nom:</b></label>
                 <input type="text" placeholder="Entrez le nom/pseudo" name="nom_client" required>
@@ -65,7 +62,6 @@
 				
 				
                 else if(isset($_POST['Modifier'])){
-                    $id_client=$_POST["id_client"];
                     $nom_client=$_POST["nom_client"];
                     $email=$_POST["email"];
                     $facebook_account=$_POST["facebook_account"];
