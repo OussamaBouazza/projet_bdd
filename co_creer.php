@@ -42,7 +42,7 @@
                 
                 <div id="fields">
                 </div>
-                <input type="button" value="Ajouter item" onClick="addField();"> 
+                <input type="button" value="Ajouter item" onClick="addField()"> 
                 
                 <input type="submit" id='ButtonAdd' value='Commander' name="Commander">
         
