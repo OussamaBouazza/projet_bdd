@@ -47,8 +47,16 @@
                 
                 <label for="ville"><b></br>Ville:</br></b></label>
                 <input type="text" placeholder="Entrez votre ville" name="ville" >
-                
-                <input type="submit" id='ButtonAdd' value='Ajouter' name="Ajouter">
+
+                <label for="nom_membership"><b></br>Membership:</br></b></label>
+                <select name="nom_membership">
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platinium">Platinium</option>
+                </select>
+
+
+                <input type="submit" id='ButtonAdd' value='Ajouter' name="Ajouter" >
         
             </form>
 
@@ -69,16 +77,38 @@
                     $rue=$_POST["rue"];
                     $code_postal=$_POST["code_postal"];
                     $ville=$_POST["ville"];
+                    $nom_membership=$_POST["nom_membership"];
+
+                    include "connect_sql.php";
                     
+                    $query="INSERT INTO telephone(noPhone) VALUES('$noPhone')";
+                    $result = $conn->query(utf8_decode($query));  
+                    $query="SELECT id_phone FROM telephone WHERE noPhone=$noPhone;"; 
+                    $result = $conn->query(utf8_decode($query));
+                    $row1=mysqli_fetch_array($result);
+
+                    $query="INSERT INTO adresse(rue,code_postal,ville) VALUES('$rue','$code_postal','$ville')";
+                    $result = $conn->query(utf8_decode($query)); 
+                    $query="SELECT id_adresse FROM adresse WHERE rue='$rue';"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row2=mysqli_fetch_array($result);
+
+                    $query="INSERT INTO membership(nom_membership) VALUES('$nom_membership')";
+                    $result = $conn->query(utf8_decode($query)); 
+                    $query="SELECT id_membership FROM membership WHERE nom_membership='$nom_membership';"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row3=mysqli_fetch_array($result);   
+
+                    $query="INSERT INTO fidelite(id_membership) VALUES($row3[0])";
+                    $result = $conn->query(utf8_decode($query)); 
+                    $query="SELECT id_fidelite FROM fidelite WHERE id_membership=$row3[0];"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row4=mysqli_fetch_array($result);   
+
+                    $query="INSERT INTO client(nom_client,email,facebook_account,instagram_account,id_phone,id_adresse,id_fidelite) VALUES('$nom_client','$email','$facebook_account','$instagram_account','$row1[0]','$row2[0]','$row4[0]');";
+                    $result = $conn->query(utf8_decode($query));
 
                     echo "<p style='color:green'>Ajouté</p>";
-                    include "connect_sql.php";
-                    $query="INSERT INTO client(nom_client,email,facebook_account,instagram_account) VALUES('$nom_client','$email','$facebook_account','$instagram_account')";
-                    $result = $conn->query(utf8_decode($query));
-                    $query="INSERT INTO telephone(noPhone) VALUES('$noPhone')";
-                    $result = $conn->query(utf8_decode($query)); 
-                    $query="INSERT INTO adresse(rue,code_postal,ville) VALUES('$rue','$code_postal','$ville')";
-                    $result = $conn->query(utf8_decode($query));          
                     }
                 
 				?>

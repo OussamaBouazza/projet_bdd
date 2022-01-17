@@ -24,10 +24,10 @@
             <form action="cl_supprimer.php" method="POST">
                 <h1>Supprimer un client</h1>
 				
-				<label for="id_client"><b>Id:</b></label>
-                <input type="text" placeholder="Entrer ID du client à supprimer:" name="id_client" required>
+				<label for="nom_client"><b>Nom:</b></label>
+                <input type="text" placeholder="Entrer le nom du client à supprimer:" name="nom_client" required>
 				
-	
+
                 <input type="submit" id='ButtonSupp' value='Supprimer' name="Supprimer">
             </form>
 
@@ -40,15 +40,15 @@
 				        }
 				
                 else if(isset($_POST['Supprimer'])){
-                    $id_client=$_POST["id_client"];
-                    echo "<p style='color:green'>Supprimé</p>";
+                    $nom_client=$_POST["nom_client"];
+                    echo "<p style='color:red'>Supprimé</p>";
                     
                     include "connect_sql.php";
-		            $query="DELETE FROM Client WHERE id_client='$id_client'";
+		            $query="DELETE FROM Client WHERE nom_client='$nom_client'";
                     $result = $conn->query(utf8_decode($query));
                     }
 				?>
-                 <p id="idBarreInfo"> Entrez l'id puis cliquez sur Supprimer. </p>
+                 <p id="idBarreInfo"> Entrez le nom puis cliquez sur Supprimer. </p>
         </div> 
             
         </main>                       

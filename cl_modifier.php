@@ -25,10 +25,10 @@
                 <h1>Modifier un client</h1>
 
 				<label for="nom_client"><b>Nom:</b></label>
-                <input type="text" placeholder="Entrez le nom/pseudo" name="nom_client" required>
+                <input type="text" placeholder="Entre le nom/pseudo" name="nom_client" required>
 				
 				<label for="email"><b>Adresse email:</b></label>
-                <input type="text" placeholder="Entrez votre adresse mail" name="email" required>
+                <input type="text" placeholder="Entrez votre adresse mail (facultatif)" name="email" required>
 
                 <label for="facebook_account"><b></br>Facebook:</br></b></label>
                 <input type="text" placeholder="Entrez votre facebook (facultatif)" name="facebook_account" >
@@ -40,13 +40,22 @@
                 <input type="text" placeholder="Entrez votre numéro de telephone" name="noPhone" >
 
                 <label for="rue"><b></br>Rue:</br></b></label>
-                <input type="text" placeholder="Entrez votre rue (facultatif)" name="rue" >
+                <input type="text" placeholder="Entrez votre rue" name="rue" >
 
                 <label for="code_postal"><b></br>Code postal:</br></b></label>
-                <input type="text" placeholder="Entrez votre code postal (facultatif)" name="code_postal" >
+                <input type="text" placeholder="Entrez votre code postal" name="code_postal" >
                 
                 <label for="ville"><b></br>Ville:</br></b></label>
-                <input type="text" placeholder="Entrez votre ville (facultatif)" name="ville" >
+                <input type="text" placeholder="Entrez votre ville" name="ville" >
+
+                <label for="nom_membership"><b></br>Membership:</br></b></label>
+                <select name="nom_membership">
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platinium">Platinium</option>
+                </select>
+                
+
 
                 <input type="submit"  id='ButtonMod'  value='Modifier' name="Modifier">   
         
@@ -70,16 +79,42 @@
                     $rue=$_POST["rue"];
                     $code_postal=$_POST["code_postal"];
                     $ville=$_POST["ville"];
+                    $nom_membership=$_POST["nom_membership"];
 
                     echo "<p style='color:yellow'>Modifié</p>";
                     include "connect_sql.php";
     
-                    $query="UPDATE `Client` SET `nom_client`='$nom_client', `email`='$mail', `facebook_account`='$facebook_account', `instagram_account`='$instagram_account' WHERE id_client='$id_client'";
+                    $query="SELECT id_client FROM client WHERE nom_client='$nom_client';"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row1=mysqli_fetch_array($result);   
+                    $query="UPDATE `client` SET `nom_client`='$nom_client', `email`='$email', `facebook_account`='$facebook_account', `instagram_account`='$instagram_account' WHERE id_client=$row1[0]";
                     $result = $conn->query(utf8_decode($query));
-                    $query="UPDATE `Telephone` SET `noPhone`='$noPhone' WHERE id_client='$id_client'";
+                    
+
+                    $query="SELECT id_phone FROM client WHERE id_client=$row1[0];"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row2=mysqli_fetch_array($result);   
+                    $query="UPDATE `telephone` SET `noPhone`='$noPhone' WHERE id_phone=$row2[0]";
                     $result = $conn->query(utf8_decode($query));
-                    $query="UPDATE `Adresse` SET `rue`='$rue', `code_postal`='$code_postal', `ville`='$ville' WHERE id_client='$id_client'";
+                    
+
+                    $query="SELECT id_adresse FROM client WHERE id_client=$row1[0];"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row3=mysqli_fetch_array($result);   
+                    $query="UPDATE `adresse` SET `rue`='$rue', `code_postal`='$code_postal', `ville`='$ville' WHERE id_adresse=$row3[0]";
                     $result = $conn->query(utf8_decode($query));
+                    
+                    /*
+                    $query="SELECT id_fidelite FROM client WHERE id_client=$row1[0];"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row4=mysqli_fetch_array($result);
+                   
+                    $query="SELECT id_membership FROM membership WHERE nom_membership='$nom_membership';"; 
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row5=mysqli_fetch_array($result);
+                    $query="UPDATE `fidelite` SET `id_membership`='$id_membership' WHERE id_fidelite=$row4[0]";
+                    $result = $conn->query(utf8_decode($query));
+                    */
                 }
                 
 				?>
