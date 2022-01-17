@@ -2,7 +2,7 @@
 
 <html lang="fr"> 					<!-- Page française -->
     <head>					<!-- Nom qui apparait sur l'onglet de navigation -->
-        <title> Supprimer Client </title>
+        <title> Créer Client </title>
 
         <meta charset="utf-8">
 
@@ -19,16 +19,14 @@
                 <!--PARTIE CENTRALE -->
 
         <div id="container1">
-            <!-- zone de formulaire -->
-
-            <form action="cl_supprimer.html" method="POST">
-                <h1>Supprimer un client</h1>
+            <!-- zone de formulaire --> <form action="co_consulter.html" method="POST">
+                <h1>Consulter les informations d'une commande</h1>
 				
 				<label for="id_client"><b>Id:</b></label>
-                <input type="text" placeholder="Entrer ID du client à supprimer:" name="id_client" required>
-				
-	
-                <input type="submit" id='ButtonSupp' value='Supprimer' name="Supprimer">
+                <input type="text" placeholder="Entrer ID de la commande pour générer sa facture:" name="id_commande" required>
+                
+                <input type="submit" id='ButtonAdd' value='Générer' name="Générer">
+        
             </form>
 
                 <?php
@@ -39,16 +37,19 @@
                         echo "<p style='color:red'>Données incohérentes</p>";
 				        }
 				
-                else if(isset($_POST['Supprimer'])){
-                    $id_client=$_POST["id_client"];
-                    echo "<p style='color:green'>Supprimé</p>";
-                    
+				else if(isset($_POST['Consulter'])){
+                    $id_commande=$_POST["id_commande"];
+                    echo "<p style='color:green'>Facture généré</p>";
+
                     include "connect_sql.php";
-		            $query="DELETE FROM Client WHERE id_client='$id_client'";
-                    $result = $conn->query(utf8_decode($query));
+                   
+                    $query="SELECT ...";
+                    $result = $conn->query(utf8_decode($query)); 
+                    file_put_contents('Facture.txt', $result);      
                     }
+                
 				?>
-                 <p id="idBarreInfo"> Entrez l'id puis cliquez sur Supprimer. </p>
+                 <p id="idBarreInfo"> Donnez l'ID de la commande pour générer sa facture. </p>
         </div> 
             
         </main>                       
@@ -57,4 +58,5 @@
         
     </body>
 </html>
+
 

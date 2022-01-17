@@ -65,11 +65,20 @@
                     $email=$_POST["email"];
                     $facebook_account=$_POST["facebook_account"];
                     $instagram_account=$_POST["instagram_account"];
+                    $noPhone=$_POST["noPhone"];
+                    $rue=$_POST["rue"];
+                    $code_postal=$_POST["code_postal"];
+                    $ville=$_POST["ville"];
+                    
 
                     echo "<p style='color:green'>Ajouté</p>";
                     include "connect_sql.php";
                     $query="INSERT INTO Client(nom_client,email,facebook_account,instagram_account) VALUES('$nom_client','$email','$facebook_account','$instagram_account')";
-                    $result = $conn->query(utf8_decode($query));       
+                    $result = $conn->query(utf8_decode($query));
+                    $query="INSERT INTO Telephone(noPhone) VALUES('$noPhone')";
+                    $result = $conn->query(utf8_decode($query)); 
+                    $query="INSERT INTO Adresse(rue,code_postal,ville) VALUES('$rue','$code_postal','$ville')";
+                    $result = $conn->query(utf8_decode($query));          
                     }
                 
 				?>
