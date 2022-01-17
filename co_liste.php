@@ -19,7 +19,7 @@
                 <!--PARTIE CENTRALE -->
 
         <div id="container1">
-            <!-- zone de formulaire --> <form action="co_liste.html" method="POST">
+            <!-- zone de formulaire --> <form action="co_liste.php" method="POST">
                 <h1>Générer la liste des commandes</h1>
 				
                 

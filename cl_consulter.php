@@ -19,7 +19,7 @@
                 <!--PARTIE CENTRALE -->
 
         <div id="container1">
-            <!-- zone de formulaire --> <form action="cl_consulter.html" method="POST">
+            <!-- zone de formulaire --> <form action="cl_consulter.php" method="POST">
                 <h1>Consulter les informations d'un client</h1>
 				
 				<label for="id_client"><b>Id:</b></label>

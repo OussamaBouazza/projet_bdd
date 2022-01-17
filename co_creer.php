@@ -21,7 +21,7 @@
         <div id="container1">
             <!-- zone de formulaire -->
 
-            <form action="cl_creer.html" method="POST">
+            <form action="co_creer.php" method="POST">
                 <h1>Creer une commande</h1>
 				
 				<label for="nom_client"><b>Nom client:</b></label>

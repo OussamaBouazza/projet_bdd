@@ -21,7 +21,7 @@
         <div id="container1">
             <!-- zone de formulaire -->
 
-            <form action="cl_supprimer.html" method="POST">
+            <form action="co_supprimer.php" method="POST">
                 <h1>Supprimer une commande</h1>
 				
 				<label for="id_client"><b>Id:</b></label>

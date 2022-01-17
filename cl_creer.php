@@ -21,14 +21,14 @@
         <div id="container1">
             <!-- zone de formulaire -->
 
-            <form action="cl_creer.html" method="POST">
+            <form action="cl_creer.php" method="POST">
                 <h1>Creer un client</h1>
 				
 				<label for="nom_client"><b>Nom:</b></label>
                 <input type="text" placeholder="Entre le nom/pseudo" name="nom_client" required>
 				
 				<label for="email"><b>Adresse email:</b></label>
-                <input type="text" placeholder="Entrez votre adresse mail" name="email" required>
+                <input type="text" placeholder="Entrez votre adresse mail (facultatif)" name="email" required>
 
                 <label for="facebook_account"><b></br>Facebook:</br></b></label>
                 <input type="text" placeholder="Entrez votre facebook (facultatif)" name="facebook_account" >
@@ -40,13 +40,13 @@
                 <input type="text" placeholder="Entrez votre numéro de telephone" name="noPhone" >
 
                 <label for="rue"><b></br>Rue:</br></b></label>
-                <input type="text" placeholder="Entrez votre rue (facultatif)" name="rue" >
+                <input type="text" placeholder="Entrez votre rue" name="rue" >
 
                 <label for="code_postal"><b></br>Code postal:</br></b></label>
-                <input type="text" placeholder="Entrez votre code postal (facultatif)" name="code_postal" >
+                <input type="text" placeholder="Entrez votre code postal" name="code_postal" >
                 
                 <label for="ville"><b></br>Ville:</br></b></label>
-                <input type="text" placeholder="Entrez votre ville (facultatif)" name="ville" >
+                <input type="text" placeholder="Entrez votre ville" name="ville" >
                 
                 <input type="submit" id='ButtonAdd' value='Ajouter' name="Ajouter">
         
@@ -73,11 +73,11 @@
 
                     echo "<p style='color:green'>Ajouté</p>";
                     include "connect_sql.php";
-                    $query="INSERT INTO Client(nom_client,email,facebook_account,instagram_account) VALUES('$nom_client','$email','$facebook_account','$instagram_account')";
+                    $query="INSERT INTO client(nom_client,email,facebook_account,instagram_account) VALUES('$nom_client','$email','$facebook_account','$instagram_account')";
                     $result = $conn->query(utf8_decode($query));
-                    $query="INSERT INTO Telephone(noPhone) VALUES('$noPhone')";
+                    $query="INSERT INTO telephone(noPhone) VALUES('$noPhone')";
                     $result = $conn->query(utf8_decode($query)); 
-                    $query="INSERT INTO Adresse(rue,code_postal,ville) VALUES('$rue','$code_postal','$ville')";
+                    $query="INSERT INTO adresse(rue,code_postal,ville) VALUES('$rue','$code_postal','$ville')";
                     $result = $conn->query(utf8_decode($query));          
                     }
                 
