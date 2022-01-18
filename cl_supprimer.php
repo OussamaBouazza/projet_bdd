@@ -52,8 +52,6 @@
                             echo "<p style='color:red'>Le client n'existe pas !</p>";
                         }
                     
-                    
-
                     $query="SELECT id_client FROM client WHERE nom_client='$nom_client';";  //Supprime les éléments dans phone, adresse, membership, fidelité et client lié au client.
                     $result = $conn->query(utf8_decode($query)); 
                     $row_id=mysqli_fetch_array($result); 

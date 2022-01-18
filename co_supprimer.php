@@ -50,15 +50,13 @@
                             echo "<p style='color:red'>Supprimé</p>";
                         }
                         else{
-                            echo "<p style='color:red'>Le client n'existe pas !</p>";
+                            echo "<p style='color:red'>La commande n'existe pas !</p>";
                         }
                     
                     $query="DELETE FROM commande WHERE id_order=$id_order";
                     $result = $conn->query(utf8_decode($query));
     
-                    $query="SELECT id_corder FROM client WHERE nom_client='$nom_client';";  //Supprime les éléments dans phone, adresse, membership, fidelité et client lié au client.
-                    $result = $conn->query(utf8_decode($query)); 
-                    $row_id=mysqli_fetch_array($result); 
+                    //Supprime les éléments d'une commande
                     
                     $query="SELECT id_adresse FROM client WHERE id_client=$row_id[0];";  
                     $result = $conn->query(utf8_decode($query)); 
