@@ -19,7 +19,7 @@
                 <!--PARTIE CENTRALE -->
 
         <div id="container1">
-            <!-- zone de formulaire -->
+            <!-- zone de formulaire -->     
 
             <form action="cl_creer.php" method="POST">
                 <h1>Creer un client</h1>
@@ -28,7 +28,7 @@
                 <input type="text" placeholder="Entre le nom/pseudo" name="nom_client" required>
 				
 				<label for="email"><b>Adresse email:</b></label>
-                <input type="text" placeholder="Entrez votre adresse mail (facultatif)" name="email" required>
+                <input type="text" placeholder="Entrez votre adresse mail (facultatif)" name="email">
 
                 <label for="facebook_account"><b></br>Facebook:</br></b></label>
                 <input type="text" placeholder="Entrez votre facebook (facultatif)" name="facebook_account" >
@@ -37,24 +37,26 @@
                 <input type="text" placeholder="Entrez votre instagram (facultatif)" name="instagram_account" >
 
                 <label for="noPhone"><b></br>Numero telephone:</br></b></label>
-                <input type="text" placeholder="Entrez votre numéro de telephone" name="noPhone" >
+                <input type="text" placeholder="Entrez votre numéro de telephone" name="noPhone" required>
 
                 <label for="rue"><b></br>Rue:</br></b></label>
-                <input type="text" placeholder="Entrez votre rue" name="rue" >
+                <input type="text" placeholder="Entrez votre rue" name="rue" required>
 
                 <label for="code_postal"><b></br>Code postal:</br></b></label>
-                <input type="text" placeholder="Entrez votre code postal" name="code_postal" >
+                <input type="text" placeholder="Entrez votre code postal" name="code_postal"required >
                 
                 <label for="ville"><b></br>Ville:</br></b></label>
-                <input type="text" placeholder="Entrez votre ville" name="ville" >
+                <input type="text" placeholder="Entrez votre ville" name="ville" required>
 
-                <label for="nom_membership"><b></br>Membership:</br></b></label>
-                <select name="nom_membership">
+                <!-- menu déroulant pour choisir membership -->
+
+                <label for="nom_membership"><b></br>Membership:</br></b></label>  
+                <select name="nom_membership" required>
                     <option value="Silver">Silver</option>
                     <option value="Gold">Gold</option>
                     <option value="Platinium">Platinium</option>
+                    <option value="Ultimate">Ultimate</option>
                 </select>
-
 
                 <input type="submit" id='ButtonAdd' value='Ajouter' name="Ajouter" >
         
@@ -65,10 +67,10 @@
                 if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2) 
-                        echo "<p style='color:red'>Données incohérentes</p>";
+                        echo "<p style='color:red'>Données incohérentes</p>"; //vérifie si les données entrées sont cohérentes
 				        }
 				
-				else if(isset($_POST['Ajouter'])){
+				else if(isset($_POST['Ajouter'])){     //création des variables en récupérant les données entrées dans le formulaire
                     $nom_client=$_POST["nom_client"];
                     $email=$_POST["email"];
                     $facebook_account=$_POST["facebook_account"];
@@ -79,9 +81,9 @@
                     $ville=$_POST["ville"];
                     $nom_membership=$_POST["nom_membership"];
 
-                    include "connect_sql.php";
+                    include "connect_sql.php";      //connexion à la BDD
                     
-                    $query="INSERT INTO telephone(noPhone) VALUES('$noPhone')";
+                    $query="INSERT INTO telephone(noPhone) VALUES('$noPhone')";     //Insert dans la table phone, adresse, membership, fidelité et client.
                     $result = $conn->query(utf8_decode($query));  
                     $query="SELECT id_phone FROM telephone WHERE noPhone=$noPhone;"; 
                     $result = $conn->query(utf8_decode($query));

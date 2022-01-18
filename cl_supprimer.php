@@ -36,14 +36,15 @@
                 if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2) 
-                        echo "<p style='color:red'>Données incohérentes</p>";
+                        echo "<p style='color:red'>Données incohérentes</p>";      //vérifie si les données entrées sont cohérentes
 				        }
 				
                 else if(isset($_POST['Supprimer'])){
                     $nom_client=$_POST["nom_client"];
                     echo "<p style='color:red'>Supprimé</p>";
                     
-                    include "connect_sql.php";
+                    include "connect_sql.php";  //connexion à la BDD
+                    
 		            $query="DELETE FROM Client WHERE nom_client='$nom_client'";
                     $result = $conn->query(utf8_decode($query));
                     }
