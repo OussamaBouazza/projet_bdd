@@ -33,6 +33,8 @@
 
                 <?php
 
+                include "connect_sql.php";    //connexion à la BDD
+
                 if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2) 
@@ -41,9 +43,16 @@
 				
                 else if(isset($_POST['Supprimer'])){
                     $nom_client=$_POST["nom_client"];
-                    echo "<p style='color:red'>Supprimé</p>";
                     
-                    include "connect_sql.php";    //connexion à la BDD
+                    $query ="SELECT * FROM client WHERE nom_client='$nom_client'";
+                        if($query!=0) {
+                            echo "<p style='color:red'>Supprimé</p>";
+                        }
+                        else{
+                            echo "<p style='color:red'>Le client n'existe pas !</p>";
+                        }
+                    
+                    
 
                     $query="SELECT id_client FROM client WHERE nom_client='$nom_client';";  //Supprime les éléments dans phone, adresse, membership, fidelité et client lié au client.
                     $result = $conn->query(utf8_decode($query)); 

@@ -87,6 +87,14 @@
                     echo "<p style='color:yellow'>Modifié</p>";
 
                     include "connect_sql.php";       //connexion à la BDD
+
+                    $query ="SELECT * FROM client WHERE nom_client='$nom_client'";
+                        if($query!=0) {
+                            echo "<p style='color:red'>Supprimé</p>";
+                        }
+                        else{
+                            echo "<p style='color:red'>Le client n'existe pas !</p>";
+                        }
     
                     $query="SELECT id_client FROM client WHERE nom_client='$nom_client';";  //Update des tables phone, adresse, membership, fidelité et client.
                     $result = $conn->query(utf8_decode($query)); 
