@@ -28,7 +28,7 @@
                 <input type="text" placeholder="Entre le nom/pseudo" name="nom_client" required>
 				
 				<label for="email"><b>Adresse email:</b></label>
-                <input type="text" placeholder="Entrez votre adresse mail (facultatif)" name="email" required>
+                <input type="text" placeholder="Entrez votre adresse mail (facultatif)" name="email">
 
                 <label for="facebook_account"><b></br>Facebook:</br></b></label>
                 <input type="text" placeholder="Entrez votre facebook (facultatif)" name="facebook_account" >
@@ -104,17 +104,23 @@
                     $query="UPDATE `adresse` SET `rue`='$rue', `code_postal`='$code_postal', `ville`='$ville' WHERE id_adresse=$row3[0]";
                     $result = $conn->query(utf8_decode($query));
                     
-                    /*
+                    
                     $query="SELECT id_fidelite FROM client WHERE id_client=$row1[0];"; 
                     $result = $conn->query(utf8_decode($query)); 
                     $row4=mysqli_fetch_array($result);
+                    
                    
-                    $query="SELECT id_membership FROM membership WHERE nom_membership='$nom_membership';"; 
+
+                    $query = "SELECT id_membership FROM membership WHERE nom_membership='$nom_membership';";
                     $result = $conn->query(utf8_decode($query)); 
-                    $row5=mysqli_fetch_array($result);
-                    $query="UPDATE `fidelite` SET `id_membership`='$id_membership' WHERE id_fidelite=$row4[0]";
-                    $result = $conn->query(utf8_decode($query));
-                    */
+                    $id_membership = mysqli_fetch_array($result)['id_membership'];
+                    
+                    $query = "SELECT id_fidelite FROM fidelite NATURAL JOIN client WHERE id_client=1; ";
+                    $result = $conn->query(utf8_decode($query)); 
+                    $id_fidelite = mysqli_fetch_array($result)['id_fidelite'];
+                    
+                    $query = "UPDATE fidelite SET id_membership=$id_membership WHERE id_fidelite=$id_fidelite;";
+                    $result = $conn->query(utf8_decode($query)); 
                 }
                 
 				?>
