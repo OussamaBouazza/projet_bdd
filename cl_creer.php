@@ -107,7 +107,7 @@
                     $result = $conn->query(utf8_decode($query)); 
                     $row4=mysqli_fetch_array($result);   
 
-                    $query="INSERT INTO client(nom_client,email,facebook_account,instagram_account,id_phone,id_adresse,id_fidelite) VALUES('$nom_client','$email','$facebook_account','$instagram_account','$row1[0]','$row2[0]','$row4[0]');";
+                    $query="INSERT INTO client(nom_client,email,facebook_account,instagram_account,id_phone,id_adresse,id_fidelite) VALUES('$nom_client','$email','$facebook_account','$instagram_account',$row1[0],$row2[0],$row4[0]);";
                     $result = $conn->query(utf8_decode($query));
 
                     echo "<p style='color:green'>Ajouté</p>";

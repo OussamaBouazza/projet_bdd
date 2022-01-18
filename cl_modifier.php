@@ -48,11 +48,14 @@
                 <label for="ville"><b></br>Ville:</br></b></label>
                 <input type="text" placeholder="Entrez votre ville" name="ville" >
 
+                <!-- menu déroulant pour choisir membership -->
+
                 <label for="nom_membership"><b></br>Membership:</br></b></label>
                 <select name="nom_membership">
                     <option value="Silver">Silver</option>
                     <option value="Gold">Gold</option>
                     <option value="Platinium">Platinium</option>
+                    <option value="Ultimate">Ultimate</option>
                 </select>
                 
 
@@ -66,11 +69,11 @@
                 if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2) 
-                        echo "<p style='color:red'>Données incohérentes</p>";
+                        echo "<p style='color:red'>Données incohérentes</p>";   //vérifie si les données entrées sont cohérentes
 				        }
 				
 				
-                else if(isset($_POST['Modifier'])){
+                else if(isset($_POST['Modifier'])){     //création des variables en récupérant les données entrées dans le formulaire
                     $nom_client=$_POST["nom_client"];
                     $email=$_POST["email"];
                     $facebook_account=$_POST["facebook_account"];
@@ -82,9 +85,10 @@
                     $nom_membership=$_POST["nom_membership"];
 
                     echo "<p style='color:yellow'>Modifié</p>";
-                    include "connect_sql.php";
+
+                    include "connect_sql.php";       //connexion à la BDD
     
-                    $query="SELECT id_client FROM client WHERE nom_client='$nom_client';"; 
+                    $query="SELECT id_client FROM client WHERE nom_client='$nom_client';";  //Update des tables phone, adresse, membership, fidelité et client.
                     $result = $conn->query(utf8_decode($query)); 
                     $row1=mysqli_fetch_array($result);   
                     $query="UPDATE `client` SET `nom_client`='$nom_client', `email`='$email', `facebook_account`='$facebook_account', `instagram_account`='$instagram_account' WHERE id_client=$row1[0]";
@@ -104,7 +108,7 @@
                     $query="UPDATE `adresse` SET `rue`='$rue', `code_postal`='$code_postal', `ville`='$ville' WHERE id_adresse=$row3[0]";
                     $result = $conn->query(utf8_decode($query));
                     
-                    /*
+                    
                     $query="SELECT id_fidelite FROM client WHERE id_client=$row1[0];"; 
                     $result = $conn->query(utf8_decode($query)); 
                     $row4=mysqli_fetch_array($result);
@@ -112,9 +116,9 @@
                     $query="SELECT id_membership FROM membership WHERE nom_membership='$nom_membership';"; 
                     $result = $conn->query(utf8_decode($query)); 
                     $row5=mysqli_fetch_array($result);
-                    $query="UPDATE `fidelite` SET `id_membership`='$id_membership' WHERE id_fidelite=$row4[0]";
+                    $query="UPDATE `fidelite` SET `id_membership`='$id_membership' WHERE id_fidelite=$row4[0];";
                     $result = $conn->query(utf8_decode($query));
-                    */
+                    
                 }
                 
 				?>
