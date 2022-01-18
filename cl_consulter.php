@@ -50,7 +50,7 @@
                     include "connect_sql.php";
 
                     // envoit une requête demandes les information de l'id_client demandé
-                    $query="SELECT nom_client, noPhone, rue, code_postal, ville, facebook_account, instagram_account, email, nom_membership
+                    $query="SELECT nom_client, noPhone, rue, code_postal, ville, facebook_account, instagram_account, email, nom_membership, nb_point
                         FROM client
                         
                         NATURAL JOIN telephone
@@ -76,12 +76,13 @@
                         echo "
                             <div class='client-details'>
                                 <ul>
-                                    <li>Nom : ". $row['nom_client'] ." </li>
-                                    <li>Compte Facebook : ". $row['facebook_account'] ."</li>
-                                    <li>Compte Instagram : ". $row['instagram_account'] ."</li>
+                                    <li>Nom : ". utf8_encode($row['nom_client']) ." </li>
+                                    <li>Compte Facebook : ". ($row['facebook_account']!=NULL ? $row['facebook_account'] : "Aucun") ."</li>
+                                    <li>Compte Instagram : ". ($row['instagram_account']!=NULL ? $row['instagram_account'] : "Aucun") ."</li>
                                     <li>Email : ". $row['email'] ."</li>
-                                    <li>Adresse : {$row['rue']}, {$row['code_postal']} {$row['ville']} </li>
+                                    <li>Adresse : ". utf8_encode($row['rue']) .", {$row['code_postal']}". utf8_encode($row['ville']) ."</li>
                                     <li>Numero de téléphone : ". $row['noPhone'] ."</li>
+                                    <li>Nombre de points : {$row['nb_point']} </li>
                                     <li>Statut :  ". $row['nom_membership'] ."</li>
                                     
                                 </ul>
