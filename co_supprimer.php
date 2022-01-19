@@ -58,29 +58,31 @@
     
                     //Supprime les éléments d'une commande
                     
-                    $query="SELECT id_adresse FROM client WHERE id_client=$row_id[0];";  
+                    $query="SELECT id_client FROM client WHERE id_order=$id_order;";  
                     $result = $conn->query(utf8_decode($query)); 
-                    $row_adr=mysqli_fetch_array($result);   
+                    $row_client=mysqli_fetch_array($result);   
 
-                    $query="SELECT id_phone FROM client WHERE id_client=$row_id[0];";  
+                    $query="SELECT id_order_status FROM order_status WHERE id_order=$id_order;";  
                     $result = $conn->query(utf8_decode($query)); 
-                    $row_pho=mysqli_fetch_array($result);   
+                    $row_status=mysqli_fetch_array($result);   
 
-                    $query="SELECT id_fidelite FROM client WHERE id_client=$row_id[0];";  
+                    $query="SELECT id_order FROM order_content WHERE id_order=$id_order;";  
                     $result = $conn->query(utf8_decode($query)); 
-                    $row_fid=mysqli_fetch_array($result);   
+                    $row_content=mysqli_fetch_array($result);  
 
-		            $query="DELETE FROM client WHERE id_client=$row_id[0]";
+                    $query="SELECT id_item FROM item WHERE id_order=$id_order;";  
+                    $result = $conn->query(utf8_decode($query)); 
+                    $row_item=mysqli_fetch_array($result);   
+
+		            $query="DELETE FROM order_status WHERE id_order_status=$row_status[0]";
                     $result = $conn->query(utf8_decode($query));
 
-                    $query="DELETE FROM telephone WHERE id_phone=$row_pho[0]";
+                    $query="DELETE FROM order_content WHERE id_order=$row_content[0]";
                     $result = $conn->query(utf8_decode($query));
 
-                    $query="DELETE FROM adresse WHERE id_adresse=$row_adr[0]";
+                    $query="UPDATE `item` SET `stock`=+1 WHERE id_item=$row_item[0]";
                     $result = $conn->query(utf8_decode($query));
 
-                    $query="DELETE FROM fidelite WHERE id_fidelite=$row_fid[0]";
-                    $result = $conn->query(utf8_decode($query));
                 }
                 
 				?>
