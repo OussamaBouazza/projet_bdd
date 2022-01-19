@@ -33,9 +33,19 @@
                     echo "<p style='color:green'>Fichier excel généré</p>";
 
                     include "connect_sql.php";
-                   
-                    $query="SELECT ...";
-                    $result = $conn->query(utf8_decode($query)); 
+
+                    $tableau = array( 
+                        ['Nom', 'Age', 'Civil'], 
+                        ['Laurent', 20, 'Homme'], 
+                        ['Anne', 25, 'Femme'], 
+                        ['Martin', 30, 'Homme'] 
+                    );
+                    $fp = fopen('fichier.csv', 'w'); 
+                    foreach ($tableau as $data) { 
+                        fputcsv($fp, $data, ";"); 
+                    } 
+                    fclose($fp); 
+                
                           
                     }
                 
