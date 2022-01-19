@@ -2,7 +2,7 @@
 
 <html lang="fr"> 					<!-- Page française -->
     <head>					<!-- Nom qui apparait sur l'onglet de navigation -->
-        <title> Créer Client </title>
+        <title> Générer liste commande </title>
 
         <meta charset="utf-8">
 
@@ -34,19 +34,27 @@
 
                     include "connect_sql.php";
 
-                    $tableau = array( 
-                        ['Nom', 'Age', 'Civil'], 
-                        ['Laurent', 20, 'Homme'], 
-                        ['Anne', 25, 'Femme'], 
-                        ['Martin', 30, 'Homme'] 
-                    );
-                    $fp = fopen('fichier.csv', 'w'); 
-                    foreach ($tableau as $data) { 
-                        fputcsv($fp, $data, ";"); 
-                    } 
-                    fclose($fp); 
+                    $query="SELECT id_order, date, prix, id_client, nom_client, nom_item FROM commande
+                                    NATURAL JOIN client 
+                                    NATURAL JOIN order_content
+                                    NATURAL JOIN item 
+                                    WHERE 1;";
+                    $result = $conn->query(utf8_decode($query));  
+                   
+                    $tableau = [];
                 
-                          
+                    while ($row = mysqli_fetch_assoc($result)){
+                        array_push($tableau,$row);
+                        
+                    }
+                        //var_dump($tableau);
+
+                        $fp = fopen('fichier.csv', 'w'); 
+                        foreach ($tableau as $data) {
+                        fputcsv($fp, $data, ";"); 
+                        }
+
+                        fclose($fp);                 
                     }
                 
 				?>

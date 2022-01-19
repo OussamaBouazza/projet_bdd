@@ -2,7 +2,7 @@
 
 <html lang="fr"> 					<!-- Page française -->
     <head>					<!-- Nom qui apparait sur l'onglet de navigation -->
-        <title> Créer Client </title>
+        <title> Générer Facture </title>
 
         <meta charset="utf-8">
 
@@ -45,7 +45,8 @@
                    
                     $query="SELECT ...";
                     $result = $conn->query(utf8_decode($query)); 
-                    file_put_contents('Facture.txt', $result);      
+                    file_put_contents('Facture.txt', $result);
+                    
                     }
                 
 				?>
