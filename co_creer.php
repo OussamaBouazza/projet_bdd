@@ -7,6 +7,7 @@
         <meta charset="utf-8">
 
 		<link rel="stylesheet" href="css/style1.css" />		<!-- lien entre html et CSS -->
+        <script src="script/co_cree.js"></script>
 
     </head>
     <body>
@@ -27,21 +28,18 @@
 				<label for="nom_client"><b>Nom client:</b></label>
                 <input type="text" placeholder="Entrez le nom du client qui commande" name="nom_client" required>
 
-                <label for="nom_item"><b>Nom item:</b></label>
-                <input type="text" placeholder="Entrez le nom de l'objet à commander" name="nom_item" required>
-				
-				<label for="quantite"><b>Quantite:</b></label>
-                <input type="text" placeholder="Entrez la quantité voulue" name="quantite" required>
                 
-                <SCRIPT LANGUAGE="JavaScript">
-                    function addField(){
-                        var field = "<br><br><label for='nom_item'><b>Nom item:</b></label> <input type='text' placeholder='Entrez le nom de l objet à commander' name='nom_item' /><br/> <label for='quantite'><b>Quantite:</b></label><input type='text' placeholder='Entrez la quantité voulue' name='quantite' value=''/><br/>";
-                        document.getElementById('fields').innerHTML += field;
-                    }
-                </SCRIPT>
-                
-                <div id="fields">
+                <div id="item-inputs">
+                    <div class="field">
+                        <label for="nom-item-1"><b>Nom de l'article :</b></label>
+                        <input type="text" placeholder="Entrez le nom de l'objet à commander" name="nom_item_1" required>
+                        
+                        <label for="quantite-1"><b>Quantité :</b></label>
+                        <input type="number" min="1" placeholder="Entrez la quantité voulue" name="quantite_1" required>
+                    </div>            
+
                 </div>
+
                 <input type="button" value="Ajouter item" onClick="addField()"> 
                 
                 <input type="submit" id='ButtonAdd' value='Commander' name="Commander">
@@ -78,14 +76,13 @@
 
               $query="SELECT prix FROM Item WHERE Nom='nom_item' ";
               $result = $conn->query($query);
-              //var_dump($result);
-              //print_r($result);
-              echo "<table><tr>";
+
+              /* echo "<table><tr>";
               while($row = mysqli_fetch_array($result)){
                   echo"<td> </td>";
                 }
               echo "</tr></table>";
-              mysqli_close($conn);
+              mysqli_close($conn); */
               ?>
         </div>
             
