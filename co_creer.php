@@ -8,6 +8,8 @@
 
 		<link rel="stylesheet" href="css/style1.css" />		<!-- lien entre html et CSS -->
 
+        <script src="script/co_creer.js"></script>
+
     </head>
     <body>
         <header>					
