@@ -62,7 +62,7 @@
                 <h1>Consulter les informations d'une commande</h1>
 
                 <label for="id_client"><b>Id:</b></label>
-                <input type="text" placeholder="Entrer ID de la commande pour générer sa facture:" name="id_commande" required>
+                <input type="text" placeholder="Entrer ID de la commande pour générer sa facture:" name="id_order" required>
 
                 <input type="submit" id='ButtonAdd' value='Générer' name="Générer">
 
@@ -74,14 +74,35 @@
                 $err = $_GET['erreur'];
                 if ($err == 1 || $err == 2)
                     echo "<p style='color:red'>Données incohérentes</p>";
-            } else if (isset($_POST['Consulter'])) {
-                $id_commande = $_POST["id_commande"];
-                echo "<p style='color:green'>Facture généré</p>";
+            
+                    
+            } else if (isset($_POST['Générer'])) {
+                $id_order = $_POST["id_order"];
 
                 include "connect_sql.php";
 
-                $query = "SELECT ...";
+                $query = "SELECT * FROM commande WHERE id_order='$id_order'";
+                if ($query != 0) {
+                    echo "<p style='color:red'>Facture généré</p>";
+                } else {
+                    echo "<p style='color:red'>La commande n'existe pas !</p>";
+                }
+
+                $query = "SELECT id_order FROM commande WHERE id_order=$id_order;";
                 $result = $conn->query(utf8_decode($query));
+                $row_id = mysqli_fetch_array($result);
+
+                $query = "SELECT id_order FROM order_content WHERE id_order=$row_id[0];";
+                $result = $conn->query(utf8_decode($query));
+                $row_content = mysqli_fetch_array($result);
+
+                $query = "SELECT id_order, date, prix, id_client, nom_client, nom_item FROM commande
+                                NATURAL JOIN client 
+                                NATURAL JOIN order_content
+                                NATURAL JOIN item 
+                                WHERE 1; ";
+                $result = $conn->query(utf8_decode($query));
+                $row = mysqli_fetch_assoc($result);
                 file_put_contents('Facture.txt', $result);
             }
 
