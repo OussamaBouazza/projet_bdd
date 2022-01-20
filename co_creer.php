@@ -10,7 +10,41 @@
 
     </head>
     <body>
-        <header>					<!-- Barre d'informations -->
+        <header>					
+        <!-- Barre de navigation -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5e5f5f;">
+            <a class="navbar-brand" href="acceuil.html">Acceuil</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="co_consulter">Consulter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="co_creer"><span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="co_modifier">Modifier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="co_supprimer">Supprimer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="co_liste">Liste</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="co_facture">Facture</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
 
         </header>
 
