@@ -76,13 +76,6 @@
                 // connect to the database
                 include "connect_sql.php";
 
-                $query = "SELECT * FROM client WHERE id_client='$id_client'";
-                if ($query != 0) {
-                    echo "<p style='color:red'>Supprimé</p>";
-                } else {
-                    echo "<p style='color:red'>Le client n'existe pas !</p>";
-                }
-
                 // envoit une requête demandes les information de l'id_client demandé
                 $query = "SELECT nom_client, noPhone, rue, code_postal, ville, facebook_account, instagram_account, email, nom_membership, nb_point
                         FROM client

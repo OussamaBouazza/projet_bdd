@@ -88,22 +88,17 @@
                     echo "<p style='color:red'>La commande n'existe pas !</p>";
                 }
 
-                $query = "SELECT id_order FROM commande WHERE id_order=$id_order;";
-                $result = $conn->query(utf8_decode($query));
-                $row_id = mysqli_fetch_array($result);
-
-                $query = "SELECT id_order FROM order_content WHERE id_order=$row_id[0];";
-                $result = $conn->query(utf8_decode($query));
-                $row_content = mysqli_fetch_array($result);
+               
 
                 $query = "SELECT id_order, date, prix, id_client, nom_client, nom_item FROM commande
                                 NATURAL JOIN client 
                                 NATURAL JOIN order_content
                                 NATURAL JOIN item 
-                                WHERE 1; ";
+                                WHERE id_order=$id_order; ";
+
                 $result = $conn->query(utf8_decode($query));
                 $row = mysqli_fetch_assoc($result);
-                file_put_contents('Facture.txt', $result);
+                file_put_contents('Facture.txt', $row);
             }
 
             ?>
