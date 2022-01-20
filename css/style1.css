@@ -45,7 +45,7 @@ form {
 #container1{
     width:20%;
     margin-left: 40%;
-    margin-top: -7%;
+    margin-top: 5%;
     font-family: cursive;
 }
 
@@ -154,6 +154,5 @@ input[type=text], input[type=password] {
 	font-size: 14px;
 	font-family: cursive;
 }
-
 
 

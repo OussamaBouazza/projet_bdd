@@ -7,44 +7,84 @@
         <meta charset="utf-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style1.css" />		<!-- lien entre html et CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <style>
+      .w3-button {
+        width: 150px;
+      }
+      .flex {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 10%;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        margin-top: 5%;
+      }
+
+      h2{
+        text-align: center;
+        color: white
+      }
+    </style>
 
     </head>
     <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <header>					<!-- Barre d'informations -->
-                <div>	<!-- allignement -->
-                </div>
-                
-            
-            </div>          
-        </header>	
-        <main>      
-       
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Commande</h5>
-                  <p class="card-text">Gestion de commande</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Créer</li>
-                  <li class="list-group-item">Modifier</li>
-                  <li class="list-group-item">Supprimer</li>
-                  <li class="list-group-item">Consulter</li>
-                  <li class="list-group-item">Générer Facture</li>
-                  <li class="list-group-item">Exporter liste commandes</li>
-                </ul>
-              </div>
-       
-       
-       
+      <h1>Service conciergerie</h1>
+      <div class="flex">
+        <div class="w3-container" style="margin-top: -100px;" >
+          <h2>Partie Client</h2>
+          <p>
+            <a href="cl_creer.php"> <input  class="w3-button w3-grey w3-hover-black" value="Creer"/> </a>
+          </p>
+          <p>
+            <a href="cl_supprimer.php"> <input  class="w3-button w3-grey w3-hover-black" value="Supprimer"/> </a>
+          </p>
+          <p>
+            <a href="cl_modifier.php"> <input  class="w3-button w3-grey w3-hover-black" value="Modifier"/> </a>
+          </p>
+          <p>
+            <a href="cl_consulter.php"> <input  class="w3-button w3-grey w3-hover-black" value="Consulter"/> </a>
+          </p>
+          
+          
+        </div>
+        <div class="w3-container">
+          <h2>Partie Commande</h2>
+          <p>
+            <a href="co_creer.php"> <input  class="w3-button w3-grey w3-hover-black" value="Creer"/> </a>
+          </p>
+          <p>
+            <a href="co_supprimer.php"> <input  class="w3-button w3-grey w3-hover-black" value="Supprimer"/> </a>
+          </p>
+          <p>
+            <a href="co_modifier.php"> <input  class="w3-button w3-grey w3-hover-black" value="Modifier"/> </a>
+          </p>
+          <p>
+            <a href="co_liste.php"> <input  class="w3-button w3-grey w3-hover-black" value="Liste cmd"/> </a>
+          </p>
+          <p>
+            <a href="co_consulter.php"> <input  class="w3-button w3-grey w3-hover-black" value="Consulter"/> </a>
+          </p>
+          <p>
+            <a href="co_facture.php"> <input  class="w3-button w3-grey w3-hover-black" value="Facture"/> </a>
+          </p>
+         
+        </div>
+      </div>
+    </body>
+
         </main>                       
         <!--FIN PARTIE CENTRALE-->
-    <!-- Pied de page -->
-    <footer>
-        <p id="idBarreInfo"> Blablabla  </h2>
-
-    </footer>
+   
+    
     <script type="text/javascript" src="js/app.js"></script>		<!-- pour inclure javascript -->				<!-- Barre de navigation -->
 </body>
 </html>
