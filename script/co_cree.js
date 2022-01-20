@@ -1,5 +1,6 @@
-let nbItem = 1;
+let nbItem = 1;     //nombre d'articles dans le formulaire
 
+//fonction qui rajoute des champs de saisie pour mettre un item en plus
 let addField = () =>{
     nbItem++;
 
@@ -13,7 +14,7 @@ let addField = () =>{
     const inputItemName = document.createElement("input");
     inputItemName.setAttribute("type","text");
     inputItemName.setAttribute("placeholder","Entrez le nom de l'objet à commander");
-    inputItemName.setAttribute("name","name_item_"+nbItem);
+    inputItemName.setAttribute("name","nom_item_"+nbItem);
     inputItemName.required = true;
     
 
@@ -37,6 +38,9 @@ let addField = () =>{
     divWrapper.append(inputQuantity); 
 
     formInputs.appendChild(divWrapper);
- 
+}
 
+//fonction qui écrie un cookie contenant le nombre d'article dans le formulaire pour être récupéré par php
+const setNbItemsCookie = () => {
+    document.cookie= "nbItems=" + nbItem;
 }

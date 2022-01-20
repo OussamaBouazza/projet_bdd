@@ -28,26 +28,26 @@
                 <input type="submit" id='ButtonAdd' value='Consulter' name="Consulter">
         
             </form>
+            <p id="idBarreInfo"> Donnez l'ID de la commande à consulter. </p>
 
-                <?php
+            <?php
 
-                if(isset($_GET['erreur'])){
-                    $err = $_GET['erreur'];
-                    if($err==1 || $err==2) 
-                        echo "<p style='color:red'>Données incohérentes</p>";
-				        }
-				
-				else if(isset($_POST['Consulter'])){
-                    $id_commande=$_POST["id_commande"];
-                    echo "<p style='color:green'>Commande :</p>";
-
-                    include "connect_sql.php";
-                    $query="SELECT ...";
-                    $result = $conn->query(utf8_decode($query));       
+            if(isset($_GET['erreur'])){
+                $err = $_GET['erreur'];
+                if($err==1 || $err==2) 
+                    echo "<p style='color:red'>Données incohérentes</p>";
                     }
-                
-				?>
-                 <p id="idBarreInfo"> Donnez l'ID de la commande à consulter. </p>
+            
+            else if(isset($_POST['Consulter'])){
+                $id_commande=$_POST["id_commande"];
+                echo "<p style='color:green'>Commande :</p>";
+
+                include "connect_sql.php";
+                $query="SELECT ...";
+                $result = $conn->query(utf8_decode($query));       
+                }
+            
+            ?>
         </div> 
             
         </main>                       
