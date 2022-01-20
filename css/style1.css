@@ -13,7 +13,7 @@ body {
 }
 
 header {                     /*taille du header et alignements*/
-    height: 15vh;
+    height: 5vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -22,7 +22,7 @@ header {                     /*taille du header et alignements*/
 }
 
 main {                  /*taille du main*/
-    height: 75vh;
+    height: 85vh;
 }
 
 footer {                    /*taille du footer et alignements*/
