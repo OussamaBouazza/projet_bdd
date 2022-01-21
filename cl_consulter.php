@@ -2,7 +2,7 @@
 
 <html lang="fr"> 					<!-- Page française -->
     <head>					<!-- Nom qui apparait sur l'onglet de navigation -->
-        <title> Créer Client </title>
+        <title> Fiche du client </title>
 
         <meta charset="utf-8">
 
