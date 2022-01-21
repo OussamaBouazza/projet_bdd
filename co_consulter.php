@@ -96,13 +96,19 @@
                                     <th>$row[item_price]</th>
                                     <th>$row[quantite]</th>
                                     <th>$row[prix_total]</th>
-                                    <th>". date("d/m/Y", strtotime($row["date_expedition"])) ."</th>
-                                    <th>". date("d/m/Y", strtotime($row["date_livraison"])) ."</th>
-                                </tr>
                             ";
+
+                            //Affichage des dates s'il y en a une dans la bdd 
+                            $row["date_expedition"]!=NULL ? $tableau .= "<th>".date("d/m/Y", strtotime($row["date_expedition"]))."</th>" : $tableau.="<th>-</th>";
+                            $row["date_livraison"]!=NULL ? $tableau .= "<th>".date("d/m/Y", strtotime($row["date_livraison"]))."</th>" : $tableau.="<th>-</th>";
+
+                            $tableau .= "</tr>";
+
+
                         }
     
                         $tableau .= "</tbody></table>";
+
                         echo $tableau;               
 
                     }
