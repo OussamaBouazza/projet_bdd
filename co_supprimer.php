@@ -77,25 +77,19 @@
                     echo "<p style='color:red'>Données incohérentes</p>";
             } else if (isset($_POST['Supprimer'])) {
                 $id_order = $_POST["id_order"];
-                echo "<p style='color:green'>Supprimé</p>";
 
                 include "connect_sql.php";
 
-                $query = "SELECT * FROM commande WHERE id_order='$id_order'";
+                $query = "SELECT FROM commande WHERE id_order='$id_order'";
                 if ($query != 0) {
                     echo "<p style='color:red'>Supprimé</p>";
                 } else {
                     echo "<p style='color:red'>La commande n'existe pas !</p>";
                 }
 
-                $query = "DELETE FROM commande WHERE id_order=$id_order";
-                $result = $conn->query(utf8_decode($query));
+                
 
                 //Supprime les éléments d'une commande
-
-                $query = "SELECT id_client FROM client WHERE id_order=$id_order;";
-                $result = $conn->query(utf8_decode($query));
-                $row_client = mysqli_fetch_array($result);
 
                 $query = "SELECT id_order_status FROM order_status WHERE id_order=$id_order;";
                 $result = $conn->query(utf8_decode($query));
@@ -105,9 +99,14 @@
                 $result = $conn->query(utf8_decode($query));
                 $row_content = mysqli_fetch_array($result);
 
-                $query = "SELECT id_item FROM item WHERE id_order=$id_order;";
+                $query = "SELECT id_item FROM order_content WHERE id_order=$id_order;";
                 $result = $conn->query(utf8_decode($query));
                 $row_item = mysqli_fetch_array($result);
+
+
+
+                $query = "DELETE FROM commande WHERE id_order=$id_order";
+                $result = $conn->query(utf8_decode($query));
 
                 $query = "DELETE FROM order_status WHERE id_order_status=$row_status[0]";
                 $result = $conn->query(utf8_decode($query));
