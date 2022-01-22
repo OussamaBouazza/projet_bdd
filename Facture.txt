@@ -1,0 +1,25 @@
+
+                    Nom client:  Charles
+                    Prix commande: 2200
+                    Date commande: 2022-01-22 
+                    
+                    Rue: 24 Rue golri
+                    Ville: Le Mans
+                    Code Postal: 54000             
+                    
+
+                                Nom item: Channel
+                                Prix item: 80
+                                Quantite item: 25
+                                Prix total: 2000
+                                Date expedition: 01/01/1970
+                                Date livraision: 01/01/1970
+                        
+
+                                Nom item: Dior
+                                Prix item: 100
+                                Quantite item: 2
+                                Prix total: 200
+                                Date expedition: 01/01/1970
+                                Date livraision: 01/01/1970
+                        
