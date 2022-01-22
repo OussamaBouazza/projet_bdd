@@ -101,38 +101,41 @@
                 $row_status = mysqli_fetch_array($result);
                 */
 
-                    $item_list = [];
+                    $id_item_list = [];
+                    $quantite_item_list = [];
 
-                    $query = "SELECT id_item FROM order_content WHERE id_order=$id_order;";
+                    $query = "SELECT id_item,quantite FROM order_content WHERE id_order=$id_order;";
                     $result = $conn->query(utf8_decode($query));
-                    $row_item = mysqli_fetch_array($result);
+                    $row = mysqli_fetch_assoc($result);
 
-                    $query = "SELECT quantite FROM order_content WHERE id_order=$id_order;";
-                    $result = $conn->query(utf8_decode($query));
-                    $row_quantite = mysqli_fetch_array($result);
-
-                    while ($row_item = mysqli_fetch_assoc($result)) {
-                        array_push($item_list, $row_item);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        array_push($id_item_list, $row["id_item"]);
+                        array_push($quantite_item_list, $row["quantite"]);
                     }
 
                     $query = "DELETE FROM commande WHERE id_order=$id_order";
                     $result = $conn->query(utf8_decode($query));
 
                     /*
-                $query = "DELETE FROM order_status WHERE id_order_status=$row_status[0]";
-                $result = $conn->query(utf8_decode($query));
-                */
+                     $query = "DELETE FROM order_status WHERE id_order_status=$row_status[0]";
+                    $result = $conn->query(utf8_decode($query));
+                    */
 
                     $query = "DELETE FROM order_content WHERE id_order=$id_order";
                     $result = $conn->query(utf8_decode($query));
+                    
 
-                    foreach ($item_list as $item) {
-                        $query = "UPDATE `item` SET `stock` = stock + $row_quantite[0] WHERE id_item= $item[0];";
-                        $result = $conn->query(utf8_decode($query));
-                        var_dump($item);
-                        echo "<p> UPDATE `item` SET `stock` = stock + $row_quantite[0] WHERE id_item= $item[0];</p>";
+                    for($i=0;$i<sizeof($id_item_list);$i++) {
+
+                        $query = "UPDATE `item` SET `stock` = stock + $quantite_item_list[$i] WHERE id_item= $id_item_list[0];";
+                        //$result = $conn->query(utf8_decode($query));
+                        echo "<p> $query </p>";
                     }
                     
+        
+
+
+
                     echo "<p style='color:red'>Supprimé</p>";
                 }
             }

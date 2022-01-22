@@ -79,7 +79,7 @@
                 </div>
                 <input type="button" value="Ajouter item" onClick="addField()">
 
-                <input type="submit" id='ButtonAdd' value='Commander' name="Commander">
+                <input type="submit" id='ButtonMod' value='Modifier' name="Modifier">
 
             </form>
 
@@ -89,11 +89,11 @@
                 $err = $_GET['erreur'];
                 if ($err == 1 || $err == 2)
                     echo "<p style='color:red'>Données incohérentes</p>";
-            } else if (isset($_POST['Commander'])) {
+            } else if (isset($_POST['Modifier'])) {
                 $nom_item = $_POST["nom_item"];
                 $quantite = $_POST["quantite"];
 
-                echo "<p style='color:green'>Commandé</p>";
+                echo "<p style='color:green'>Modifier</p>";
                 include "connect_sql.php";
                 $query = "INSERT INTO ";
                 $result = $conn->query(utf8_decode($query));
