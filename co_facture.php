@@ -59,7 +59,7 @@
         <div id="container1">
             <!-- zone de formulaire -->
             <form action="co_facture.php" method="POST">
-                <h1>Consulter les informations d'une commande</h1>
+                <h1>Générer la facture d'une commande</h1>
 
                 <label for="id_client"><b>Id:</b></label>
                 <input type="text" placeholder="Entrer ID de la commande pour générer sa facture:" name="id_order" required>
@@ -85,79 +85,57 @@
                 $row = mysqli_fetch_array($result);
                 */
 
-                $query = "SELECT nom_client, prix, date FROM commande 
+                $query = "SELECT nom_client, prix, date, rue, ville, code_postal FROM commande 
                 NATURAL JOIN client
+                NATURAL JOIN adresse
                 WHERE id_order = $id_order;";
+
                 $result = $conn->query(utf8_decode($query));
-                $data = mysqli_fetch_array($result);
+                if($result->num_rows == 0){
+                    echo "<h2>Erreur : le numéro de commande saisi est incorrect</h2>";
+                }
 
-                if ($data == NULL) {
-                    echo "
-                        <div class='client-details'>
-                            Cet ID ne correspond à aucune commande.
-                        </div>";
-                } 
-                else {
+                else
+                {
                     $data = mysqli_fetch_array($result);
-
                     $nom_client = $data["nom_client"];
                     $prix_commande = $data["prix"];
                     $date_commande = $data["date"];
-
-                    echo "
-                        <ul>
-                            <li>Client : $nom_client</li>
-                            <li>Date de la commande : ". date("d/m/Y", strtotime($date_commande)) ."</li>
-                            <li>Prix total de la commande : $prix_commande €</li>
-                        </ul>";
+                    $rue=$data["rue"];
+                    $ville=$data["ville"];
+                    $code_postal=$data["code_postal"];
 
                     //construction du tableau contenant les détails de la commande
-                    $tableau = "<table>
-                                    <thead>
-                                        <th>Article</th>
-                                        <th>Prix unitaire</th>
-                                        <th>Quantité</th>
-                                        <th>Prix total</th>
-                                        <th>Date d'expédition</th>
-                                        <th>Date de livraison</th>
-                                    </thead>
-                                    <tbody>
+                    $tableau = "
+                    Nom client:  $nom_client
+                    Prix commande: $prix_commande
+                    Date commande: $date_commande 
+                    
+                    Rue: $rue
+                    Ville: $ville
+                    Code Postal: $code_postal             
                     ";
 
                     $query = "SELECT nom_item, item_price, quantite, prix_total, date_expedition, date_livraison FROM order_content
                         NATURAL JOIN item
-                        WHERE id_order=$id_commande;";
+                        WHERE id_order=$id_order;";
 
-                    echo($query);
-
+                    //echo($query);
                     $result = $conn->query(utf8_decode($query));
-
-                    var_dump($result);
+                    //var_dump($result);
 
                     while($row = mysqli_fetch_assoc($result)){
                         $tableau .= "
-                            <tr>
-                                <th>$row[nom_item]</th>
-                                <th>$row[item_price]</th>
-                                <th>$row[quantite]</th>
-                                <th>$row[prix_total]</th>
-                                <th>". date("d/m/Y", strtotime($row["date_expedition"])) ."</th>
-                                <th>". date("d/m/Y", strtotime($row["date_livraison"])) ."</th>
-                            </tr>
+
+                                Nom item: $row[nom_item]
+                                Prix item: $row[item_price]
+                                Quantite item: $row[quantite]
+                                Prix total: $row[prix_total]
+                                Date expedition: ". date("d/m/Y", strtotime($row["date_expedition"])) ."
+                                Date livraision: ". date("d/m/Y", strtotime($row["date_livraison"])) ."
                         ";
                     }
                     file_put_contents('Facture.txt', $tableau);
-                    /*
-                    $query = "SELECT id_order, date, prix, id_client, nom_client, nom_item FROM commande
-                                NATURAL JOIN client 
-                                NATURAL JOIN order_content
-                                NATURAL JOIN item 
-                                WHERE id_order=$id_order; ";
-
-                    $result = $conn->query(utf8_decode($query));
-                    $row = mysqli_fetch_assoc($result);
-                    file_put_contents('Facture.txt', $row);
-                    */
 
                     echo "<p style='color:green'>Facture générée</p>";
                 }

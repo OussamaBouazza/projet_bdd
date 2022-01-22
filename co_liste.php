@@ -87,7 +87,7 @@
                 }
                 //var_dump($tableau);
 
-                $fp = fopen('fichier.csv', 'w');
+                $fp = fopen('Liste_commandes.csv', 'w');
                 foreach ($tableau as $data) {
                     fputcsv($fp, $data, ";");
                 }
