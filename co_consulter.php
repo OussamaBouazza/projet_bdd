@@ -19,7 +19,8 @@
                 <!--PARTIE CENTRALE -->
 
         <div id="container1">
-            <!-- zone de formulaire --> <form action="co_consulter.php" method="POST">
+            <!-- zone de formulaire --> 
+            <form action="co_consulter.php" method="POST">
                 <h1>Consulter les informations d'une commande</h1>
 				
 				<label for="id_client"><b>Id:</b></label>
