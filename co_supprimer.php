@@ -126,7 +126,6 @@
                     
 
                     for($i=0;$i<sizeof($id_item_list);$i++) {
-
                         $query = "UPDATE `item` SET `stock` = stock + $quantite_item_list[$i] WHERE id_item= $id_item_list[0];";
                         //$result = $conn->query(utf8_decode($query));
                         echo "<p> $query </p>";

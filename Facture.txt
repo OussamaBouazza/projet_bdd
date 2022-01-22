@@ -1,1 +1,11 @@
-212022-01-222001CharlesDior
+<table>
+                                    <thead>
+                                        <th>Article</th>
+                                        <th>Prix unitaire</th>
+                                        <th>Quantité</th>
+                                        <th>Prix total</th>
+                                        <th>Date d'expédition</th>
+                                        <th>Date de livraison</th>
+                                    </thead>
+                                    <tbody>
+                    

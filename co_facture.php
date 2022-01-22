@@ -79,17 +79,71 @@
 
                 include "connect_sql.php";
 
+                /*
                 $query = "SELECT * FROM commande WHERE id_order='$id_order'";
                 $result = $conn->query(utf8_decode($query));
                 $row = mysqli_fetch_array($result);
+                */
+
+                $query = "SELECT nom_client, prix, date FROM commande 
+                NATURAL JOIN client
+                WHERE id_order = $id_commande;";
+                $result = $conn->query(utf8_decode($query));
+
 
                 if ($row == NULL) {
                     echo "
                         <div class='client-details'>
                             Cet ID ne correspond à aucune commande.
                         </div>";
+                } 
+                else {
+                    $data = mysqli_fetch_array($result);
 
-                } else {
+                    $nom_client = $data["nom_client"];
+                    $prix_commande = $data["prix"];
+                    $date_commande = $data["date"];
+
+                    echo "
+                        <ul>
+                            <li>Client : $nom_client</li>
+                            <li>Date de la commande : ". date("d/m/Y", strtotime($date_commande)) ."</li>
+                            <li>Prix total de la commande : $prix_commande €</li>
+                        </ul>";
+
+                    //construction du tableau contenant les détails de la commande
+                    $tableau = "<table>
+                                    <thead>
+                                        <th>Article</th>
+                                        <th>Prix unitaire</th>
+                                        <th>Quantité</th>
+                                        <th>Prix total</th>
+                                        <th>Date d'expédition</th>
+                                        <th>Date de livraison</th>
+                                    </thead>
+                                    <tbody>
+                    ";
+
+                    $query = "SELECT nom_item, item_price, quantite, prix_total, date_expedition, date_livraison FROM order_content
+                        NATURAL JOIN item
+                        WHERE id_order=$id_commande;";
+
+                    $result = $conn->query(utf8_decode($query));
+
+                    while($row = mysqli_fetch_assoc($result)){
+                        $tableau .= "
+                            <tr>
+                                <th>$row[nom_item]</th>
+                                <th>$row[item_price]</th>
+                                <th>$row[quantite]</th>
+                                <th>$row[prix_total]</th>
+                                <th>". date("d/m/Y", strtotime($row["date_expedition"])) ."</th>
+                                <th>". date("d/m/Y", strtotime($row["date_livraison"])) ."</th>
+                            </tr>
+                        ";
+                    }
+                    file_put_contents('Facture.txt', $tableau);
+                    /*
                     $query = "SELECT id_order, date, prix, id_client, nom_client, nom_item FROM commande
                                 NATURAL JOIN client 
                                 NATURAL JOIN order_content
@@ -99,11 +153,12 @@
                     $result = $conn->query(utf8_decode($query));
                     $row = mysqli_fetch_assoc($result);
                     file_put_contents('Facture.txt', $row);
+                    */
 
-                    echo "<p style='color:red'>Facture générée</p>";
+                    echo "<p style='color:green'>Facture générée</p>";
                 }
             }
-
+        
             ?>
             <p id="idBarreInfo"> Donnez l'ID de la commande pour générer sa facture. </p>
         </div>
