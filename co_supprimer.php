@@ -77,7 +77,7 @@
                 $err = $_GET['erreur'];
                 if ($err == 1 || $err == 2)
                     echo "<p style='color:red'>Données incohérentes</p>";
-
+                    
             } else if (isset($_POST['Supprimer'])) {
                 $id_order = $_POST["id_order"];
 
@@ -91,49 +91,31 @@
                             Cet ID ne correspond à aucune commande.
                         </div>";
                 } else {
+                    $item_list = [];
 
-
-                    //Supprime les éléments d'une commande
-
-                    /*
-                $query = "SELECT id_order_status FROM order_status WHERE id_order=$id_order;";
-                $result = $conn->query(utf8_decode($query));
-                $row_status = mysqli_fetch_array($result);
-                */
-
-                    $id_item_list = [];
-                    $quantite_item_list = [];
-
-                    $query = "SELECT id_item,quantite FROM order_content WHERE id_order=$id_order;";
+                    $query = "SELECT id_item, quantite FROM order_content WHERE id_order=$id_order;";
                     $result = $conn->query(utf8_decode($query));
-                    $row = mysqli_fetch_assoc($result);
 
+                    //mettre dans $item_list les id_item et la quantité à ssupprimer
                     while ($row = mysqli_fetch_assoc($result)) {
-                        array_push($id_item_list, $row["id_item"]);
-                        array_push($quantite_item_list, $row["quantite"]);
+                        $obj = new stdClass;
+                        $obj->id_item = $row["id_item"];
+                        $obj->quantite = $row["quantite"];
+
+                        array_push($item_list, $obj);
                     }
-
-                    $query = "DELETE FROM commande WHERE id_order=$id_order";
-                    $result = $conn->query(utf8_decode($query));
-
-                    /*
-                     $query = "DELETE FROM order_status WHERE id_order_status=$row_status[0]";
-                    $result = $conn->query(utf8_decode($query));
-                    */
 
                     $query = "DELETE FROM order_content WHERE id_order=$id_order";
                     $result = $conn->query(utf8_decode($query));
-                    
 
-                    for($i=0;$i<sizeof($id_item_list);$i++) {
-                        $query = "UPDATE `item` SET `stock` = stock + $quantite_item_list[$i] WHERE id_item= $id_item_list[0];";
-                        //$result = $conn->query(utf8_decode($query));
-                        echo "<p> $query </p>";
+                    $query = "DELETE FROM commande WHERE id_order=$id_order;";
+                    $result = $conn->query(utf8_decode($query));
+
+                    //mettre à jour le stock
+                    foreach ($item_list as $item) {
+                        $query = "UPDATE `item` SET `stock` = stock + $item->quantite WHERE id_item= $item->id_item;";
+                        $result = $conn->query(utf8_decode($query));
                     }
-                    
-        
-
-
 
                     echo "<p style='color:red'>Supprimé</p>";
                 }

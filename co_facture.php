@@ -87,11 +87,11 @@
 
                 $query = "SELECT nom_client, prix, date FROM commande 
                 NATURAL JOIN client
-                WHERE id_order = $id_commande;";
+                WHERE id_order = $id_order;";
                 $result = $conn->query(utf8_decode($query));
+                $data = mysqli_fetch_array($result);
 
-
-                if ($row == NULL) {
+                if ($data == NULL) {
                     echo "
                         <div class='client-details'>
                             Cet ID ne correspond à aucune commande.
@@ -128,7 +128,11 @@
                         NATURAL JOIN item
                         WHERE id_order=$id_commande;";
 
+                    echo($query);
+
                     $result = $conn->query(utf8_decode($query));
+
+                    var_dump($result);
 
                     while($row = mysqli_fetch_assoc($result)){
                         $tableau .= "
