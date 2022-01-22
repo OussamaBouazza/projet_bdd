@@ -24,6 +24,11 @@
 
 *Liste des commande:*
 
-*Générer une facture:*
+*Générer une facture:*!
+
+
+
+Modèle EA: [271257200_477971167229691_1280182490710431520_n](https://user-images.githubusercontent.com/92999833/150653166-4f2d2f6f-40bd-4034-b1f5-8a7d6ff8016f.png)
+
 
 
