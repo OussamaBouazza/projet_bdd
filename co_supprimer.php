@@ -71,51 +71,70 @@
 
             <?php
 
+            include "connect_sql.php";
+
             if (isset($_GET['erreur'])) {
                 $err = $_GET['erreur'];
                 if ($err == 1 || $err == 2)
                     echo "<p style='color:red'>Données incohérentes</p>";
+
             } else if (isset($_POST['Supprimer'])) {
                 $id_order = $_POST["id_order"];
 
-                include "connect_sql.php";
+                $query = "SELECT * FROM commande WHERE id_order=$id_order";
+                $result = $conn->query(utf8_decode($query));
+                $row = mysqli_fetch_array($result);
 
-                $query = "SELECT FROM commande WHERE id_order='$id_order'";
-                if ($query != 0) {
-                    echo "<p style='color:red'>Supprimé</p>";
+                if ($row == NULL) {
+                    echo "
+                        <div class='client-details'>
+                            Cet ID ne correspond à aucune commande.
+                        </div>";
                 } else {
-                    echo "<p style='color:red'>La commande n'existe pas !</p>";
-                }
 
-                
 
-                //Supprime les éléments d'une commande
+                    //Supprime les éléments d'une commande
 
+                    /*
                 $query = "SELECT id_order_status FROM order_status WHERE id_order=$id_order;";
                 $result = $conn->query(utf8_decode($query));
                 $row_status = mysqli_fetch_array($result);
+                */
 
-                $query = "SELECT id_order FROM order_content WHERE id_order=$id_order;";
-                $result = $conn->query(utf8_decode($query));
-                $row_content = mysqli_fetch_array($result);
+                    $item_list = [];
 
-                $query = "SELECT id_item FROM order_content WHERE id_order=$id_order;";
-                $result = $conn->query(utf8_decode($query));
-                $row_item = mysqli_fetch_array($result);
+                    $query = "SELECT id_item FROM order_content WHERE id_order=$id_order;";
+                    $result = $conn->query(utf8_decode($query));
+                    $row_item = mysqli_fetch_array($result);
 
+                    $query = "SELECT quantite FROM order_content WHERE id_order=$id_order;";
+                    $result = $conn->query(utf8_decode($query));
+                    $row_quantite = mysqli_fetch_array($result);
 
+                    while ($row_item = mysqli_fetch_assoc($result)) {
+                        array_push($item_list, $row_item);
+                    }
 
-                $query = "DELETE FROM commande WHERE id_order=$id_order";
-                $result = $conn->query(utf8_decode($query));
+                    $query = "DELETE FROM commande WHERE id_order=$id_order";
+                    $result = $conn->query(utf8_decode($query));
 
+                    /*
                 $query = "DELETE FROM order_status WHERE id_order_status=$row_status[0]";
                 $result = $conn->query(utf8_decode($query));
+                */
 
-                $query = "DELETE FROM order_content WHERE id_order=$row_content[0]";
-                $result = $conn->query(utf8_decode($query));
+                    $query = "DELETE FROM order_content WHERE id_order=$id_order";
+                    $result = $conn->query(utf8_decode($query));
 
-                $query = "UPDATE `item` SET `stock`=+1 WHERE id_item=$row_item[0]";
-                $result = $conn->query(utf8_decode($query));
+                    foreach ($item_list as $item) {
+                        $query = "UPDATE `item` SET `stock` = stock + $row_quantite[0] WHERE id_item= $item[0];";
+                        $result = $conn->query(utf8_decode($query));
+                        var_dump($item);
+                        echo "<p> UPDATE `item` SET `stock` = stock + $row_quantite[0] WHERE id_item= $item[0];</p>";
+                    }
+                    
+                    echo "<p style='color:red'>Supprimé</p>";
+                }
             }
 
             ?>

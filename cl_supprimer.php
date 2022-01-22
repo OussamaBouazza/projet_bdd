@@ -69,43 +69,52 @@
                 $err = $_GET['erreur'];
                 if ($err == 1 || $err == 2)
                     echo "<p style='color:red'>Données incohérentes</p>";   //vérifie si les données entrées sont cohérentes
+
             } else if (isset($_POST['Supprimer'])) {
                 $nom_client = $_POST["nom_client"];
 
                 $query = "SELECT * FROM client WHERE nom_client='$nom_client'";
-                if ($query != 0) {
-                    echo "<p style='color:red'>Supprimé</p>";
+                $result = $conn->query(utf8_decode($query));
+                $row = mysqli_fetch_array($result);
+
+                //si l'id fournit n'est pas dans la base de donnée
+                if ($row == NULL) {
+                    echo "
+                        <div class='client-details'>
+                            Cet ID ne correspond à aucun client
+                        </div>";
+
                 } else {
-                    echo "<p style='color:red'>Le client n'existe pas !</p>";
+                    $query = "SELECT id_client FROM client WHERE nom_client='$nom_client';";  //Supprime les éléments dans phone, adresse, membership, fidelité et client lié au client.
+                    $result = $conn->query(utf8_decode($query));
+                    $row_id = mysqli_fetch_array($result);
+
+                    $query = "SELECT id_adresse FROM client WHERE id_client=$row_id[0];";
+                    $result = $conn->query(utf8_decode($query));
+                    $row_adr = mysqli_fetch_array($result);
+
+                    $query = "SELECT id_phone FROM client WHERE id_client=$row_id[0];";
+                    $result = $conn->query(utf8_decode($query));
+                    $row_pho = mysqli_fetch_array($result);
+
+                    $query = "SELECT id_fidelite FROM client WHERE id_client=$row_id[0];";
+                    $result = $conn->query(utf8_decode($query));
+                    $row_fid = mysqli_fetch_array($result);
+
+                    $query = "DELETE FROM client WHERE id_client=$row_id[0]";
+                    $result = $conn->query(utf8_decode($query));
+
+                    $query = "DELETE FROM telephone WHERE id_phone=$row_pho[0]";
+                    $result = $conn->query(utf8_decode($query));
+
+                    $query = "DELETE FROM adresse WHERE id_adresse=$row_adr[0]";
+                    $result = $conn->query(utf8_decode($query));
+
+                    $query = "DELETE FROM fidelite WHERE id_fidelite=$row_fid[0]";
+                    $result = $conn->query(utf8_decode($query));
+
+                    echo "<p style='color:red'>Supprimé</p>";
                 }
-
-                $query = "SELECT id_client FROM client WHERE nom_client='$nom_client';";  //Supprime les éléments dans phone, adresse, membership, fidelité et client lié au client.
-                $result = $conn->query(utf8_decode($query));
-                $row_id = mysqli_fetch_array($result);
-
-                $query = "SELECT id_adresse FROM client WHERE id_client=$row_id[0];";
-                $result = $conn->query(utf8_decode($query));
-                $row_adr = mysqli_fetch_array($result);
-
-                $query = "SELECT id_phone FROM client WHERE id_client=$row_id[0];";
-                $result = $conn->query(utf8_decode($query));
-                $row_pho = mysqli_fetch_array($result);
-
-                $query = "SELECT id_fidelite FROM client WHERE id_client=$row_id[0];";
-                $result = $conn->query(utf8_decode($query));
-                $row_fid = mysqli_fetch_array($result);
-
-                $query = "DELETE FROM client WHERE id_client=$row_id[0]";
-                $result = $conn->query(utf8_decode($query));
-
-                $query = "DELETE FROM telephone WHERE id_phone=$row_pho[0]";
-                $result = $conn->query(utf8_decode($query));
-
-                $query = "DELETE FROM adresse WHERE id_adresse=$row_adr[0]";
-                $result = $conn->query(utf8_decode($query));
-
-                $query = "DELETE FROM fidelite WHERE id_fidelite=$row_fid[0]";
-                $result = $conn->query(utf8_decode($query));
             }
             ?>
             <p id="idBarreInfo"> Entrez le nom puis cliquez sur Supprimer. </p>
