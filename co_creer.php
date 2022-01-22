@@ -61,7 +61,7 @@
                 <h1>Creer une commande</h1>
 				
 				<label for="id_client"><b>ID du client:</b></label>
-                <input type="number" placeholder="Entrez l'id du client qui commande" name="id_client" required>
+                <input type="number" placeholder="Entrez l'id du client" name="id_client" required>
 
                 
                 <div id="item-inputs">
