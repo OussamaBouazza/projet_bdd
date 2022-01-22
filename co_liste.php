@@ -96,7 +96,7 @@
             }
 
             ?>
-
+        <p id="idBarreInfo"> Générer la liste des commandes. </p>
         </div>
 
     </main>

@@ -67,7 +67,7 @@
                 <input type="submit" id='ButtonAdd' value='Consulter' name="Consulter">
         
             </form>
-            <p id="idBarreInfo"> Donnez l'ID de la commande à consulter. </p>
+            
 
             <?php
 
@@ -154,6 +154,7 @@
                 }
 
             ?>
+            <p id="idBarreInfo"> Donnez l'ID de la commande à consulter. </p>
         </div> 
         
         

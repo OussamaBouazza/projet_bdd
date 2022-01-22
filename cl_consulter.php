@@ -52,7 +52,7 @@
             <!-- zone de formulaire -->
             <form action="cl_consulter.php" method="POST">
                 <h1>Consulter les informations d'un client</h1>
-                <p id="idBarreInfo"> Donnez l'ID du client à consulter. </p>
+                
 
                 <label for="id_client"><b>Id:</b></label>
                 <input type="text" placeholder="Entrer ID du client à consulter:" name="id_client" required>
@@ -120,7 +120,7 @@
 
 
         </div>
-
+        <p id="idBarreInfo"> Donnez l'ID du client à consulter. </p>
     </main>
     <!--FIN PARTIE CENTRALE-->
     <!-- Pied de page -->

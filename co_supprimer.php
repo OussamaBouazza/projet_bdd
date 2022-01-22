@@ -15,7 +15,6 @@
 
 <body>
     <header>
-        <!-- Barre d'informations -->
         <!-- Barre de navigation -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -77,7 +76,7 @@
                 $err = $_GET['erreur'];
                 if ($err == 1 || $err == 2)
                     echo "<p style='color:red'>Données incohérentes</p>";
-                    
+
             } else if (isset($_POST['Supprimer'])) {
                 $id_order = $_POST["id_order"];
 
