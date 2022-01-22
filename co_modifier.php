@@ -67,7 +67,7 @@
                 <input type="submit" id='ButtonMod' value='Valider' name="valider">
             </form>
 
-
+        </div>
 
 
 
@@ -169,7 +169,7 @@
             }
             ?>
             <p id="idBarreInfo"> Donnez l'ID de la commande pour générer sa facture. </p>
-        </div>
+        
     </main>
 
     <!--FIN PARTIE CENTRALE-->
