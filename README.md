@@ -1,34 +1,35 @@
 # Conciergerie:
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Partie Client:**
 
-*Création de client:* Remplissez les champs (non facultatifs) pour créer un client.
+-*Création de client:* Remplissez les champs (non facultatifs) pour créer un client.
 
-*Modification de client:* Remplissez les champs pour modifier un client. Le client aillant le nom que vous avez entré sera modifié avec les nouvelles données.
+-*Modification de client:* Remplissez les champs pour modifier un client. Le client aillant le nom que vous avez entré sera modifié avec les nouvelles données.
 
-*Suppression de client:* Donnez le nom du client que vous souhaitez supprimer.
+-*Suppression de client:* Donnez le nom du client que vous souhaitez supprimer.
 
-*Consulter client:* Donnez l'ID du client que vous souhaitez consulter(tests possibles avec 1, 2, 3)
+-*Consulter client:* Donnez l'ID du client que vous souhaitez consulter(tests possibles avec 1, 2, 3)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Partie Commande:**
-*Création de commande:* 
 
-*Modification de commande:*
+-*Création de commande:* 
 
-*Suppression de commande:*
+-*Modification de commande:*
 
-*Consulter une commande:*
+-*Suppression de commande:*
 
-*Liste des commande:*
+-*Consulter une commande:*
 
-*Générer une facture:*!
+-*Liste des commande:*
 
+-*Générer une facture:*
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Modèle EA: [271257200_477971167229691_1280182490710431520_n](https://user-images.githubusercontent.com/92999833/150653166-4f2d2f6f-40bd-4034-b1f5-8a7d6ff8016f.png)
+**Modèle EA:** [271257200_477971167229691_1280182490710431520_n](https://user-images.githubusercontent.com/92999833/150653166-4f2d2f6f-40bd-4034-b1f5-8a7d6ff8016f.png)
 
 
 
