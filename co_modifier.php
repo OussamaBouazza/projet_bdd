@@ -111,16 +111,25 @@
                 
                 
                 for ($i=0; $i < $nb_items; $i++) { 
-                    // $query = "UPDATE order_content SET quantite=". $_POST["quantite_".$i] .", date_expedition='". $_POST["date_expedition_".$i] ."', date_livraison='". $_POST["date_livraison_".$i] ."' WHERE id_order = $id_order AND id_item=". $_POST["id_item_".$i] .";";
+                    $query = "SELECT quantite FROM order_content WHERE id_item = ". $_POST["id_item_".$i] ." AND id_order=$id_order;";
+                    $result = $conn->query(utf8_decode($query));
+                    $stock_before = mysqli_fetch_array($result)[0]; //stock avant la modification
+
+                    //différence entre l'ancien stock et le nouveau modifié
+                    $difference =  $_POST["quantite_".$i] - $stock_before;
+                    
+                    $query = "UPDATE item SET stock = stock + $difference WHERE id_item =". $_POST["id_item_".$i] .";";
+                    $result = $conn->query(utf8_decode($query));
+
+
+                    //mettre à jour la nouvelle quantité dans order_content
                     $query = "UPDATE order_content SET quantite=". $_POST["quantite_".$i];
                    
                     //vérifier si les dates son NULL
-                    $_POST["date_expedition_".$i] != '' ? $query .= ", date_expedition='". $_POST["date_expedition_".$i] ."'," : $query .= "date_expedition=NULL";
+                    $_POST["date_expedition_".$i] != '' ? $query .= ", date_expedition='". $_POST["date_expedition_".$i] ."'," : $query .= ", date_expedition=NULL,";
                     $_POST["date_livraison_".$i] != '' ? $query .= "date_livraison='". $_POST["date_livraison_".$i]."'" : $query .= "date_livraison=NULL";
                     
                     $query .= " WHERE id_order = $id_order AND id_item=". $_POST["id_item_".$i] .";";
-
-
                     $conn->query(utf8_decode($query));
                     
                 }
